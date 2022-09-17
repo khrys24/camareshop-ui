@@ -3,8 +3,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
-  Stack,
   Button,
   Box,
 } from "@mui/material";
@@ -44,7 +42,7 @@ const Navbar = () => {
               <ShoppingCartIcon />
             </Button>
             <Button color="inherit">
-              <Link to="/register" component={RouterLink} color="inherit">
+              <Link to="/register" component={RouterLink} color="inherit" sx={{"&:hover": { color: "white", transform:"scale(1.2)" }}}>
                 <PersonIcon />
               </Link>
             </Button>

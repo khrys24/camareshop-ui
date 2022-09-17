@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Button, Link } from "@mui/material";
+import { Button, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 
@@ -12,9 +12,8 @@ const ContactHome = () => {
         margin: "150px",
       }}
     >
-      <Typography variant="h3" component="div" className="contact--home">
-        Got a message for us?
-      </Typography>
+
+      <h2 style={{fontSize:"3rem"}} className="contact--home">Got a message for us?</h2>
       <div style={{ lineHeight: "2rem", margin: "20px 0" }}>
         <p>We'd love to hear from you!</p>
         <p>
@@ -38,6 +37,7 @@ const ContactHome = () => {
               fontWeight: "bold",
               fontSize: "1.1rem",
               "&:hover": { color: "#ce65cc" },
+              fontFamily:"Varela Round"
             }}
           >
             Contact Us

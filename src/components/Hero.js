@@ -16,10 +16,15 @@ const Hero = () => {
           </em>
         </p>
         <Button
+          className="view--all--btn"
           variant="outlined"
           size="large"
           color="secondary"
-          sx={{ color: "#ce65cc", border: "1px solid #ce65cc", margin:"20px 0" }}
+          sx={{
+            color: "#ce65cc",
+            border: "1px solid #ce65cc",
+            margin: "20px 0",
+          }}
         >
           <Link
             to="/menu"
@@ -30,7 +35,7 @@ const Hero = () => {
               fontSize: "1.1rem",
             }}
           >
-            View
+            Check it out
           </Link>
         </Button>
       </div>
