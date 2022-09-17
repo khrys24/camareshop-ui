@@ -11,7 +11,7 @@ const Testimonials = () => {
         >
           <div className="carousel-inner">
             <div className="carousel-item active ">
-              <p>
+              <h3>
                 <em>
                   "Cake and delivery is perfect! A very trustworthy cakeshop.
                   Thank you Camare cakes!"
@@ -20,10 +20,10 @@ const Testimonials = () => {
                 <br />
                 -Cardo Dalisay
                 </em>
-              </p>
+              </h3>
             </div>
             <div className="carousel-item ">
-              <p>
+              <h3>
                 <em>
                   "Delicious cakes! My family have raved since we tested the cake. All we had to do was wait and eat.
                   We couldn't have been more pleased!"
@@ -32,10 +32,10 @@ const Testimonials = () => {
                 <br />
                 -Taylor Swift
                 </em>
-              </p>
+              </h3>
             </div>
             <div className="carousel-item ">
-              <p>
+              <h3>
                 <em>
                   "The staff was so accommodating and friendly. Delivery and execution was great. Will order again"
                 
@@ -43,7 +43,7 @@ const Testimonials = () => {
                 <br />
                 -Gal Gadot
                 </em>
-              </p>
+              </h3>
             </div>
           </div>
           <button

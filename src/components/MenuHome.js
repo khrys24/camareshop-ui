@@ -11,77 +11,137 @@ import { Link } from "react-router-dom";
 const MenuHome = () => {
   return (
     <div className="container my-5">
-      <Typography variant="h3" component="div" sx={{ margin: "30px" }}>
-        Best Sellers
-      </Typography>
       <div className="menu--selections gap-5">
-        <Card sx={{ maxWidth: 400 }} className="featured">
+        <Card
+          sx={{
+            width: 400,
+            boxShadow: "none",
+            border: "none",
+            height: "600px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+          className="featured"
+        >
           <CardMedia
             className="featured--photo"
             component="img"
-            alt="Mocha Cake"
-            height="400"
-            image="./images/mocha_cake_1.png"
+            alt="Black Forest Cake"
+            height="375"
+            image="./images/black_forest_cake_1.png"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{ color: "#ce65cc", fontWeight: "bold", fontFamily:"Varela Round" }}
+            >
+              Black Forest Gâteau
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+            <Typography variant="body2" sx={{fontFamily:"Varela Round"}}>
+              Consists of several layers of chocolate sponge cake sandwiched
+              with whipped cream and cherries.
             </Typography>
           </CardContent>
-          <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-            <Button size="large" color="secondary" sx={{ color: "#ce65cc" }}>
+          <CardActions
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "auto",
+            }}
+          >
+            <Button size="large" color="secondary" sx={{ color: "#ce65cc", fontFamily:"Varela Round" }}>
               View
             </Button>
           </CardActions>
         </Card>
 
-        <Card sx={{ maxWidth: 400 }} className="featured">
+        <Card
+          sx={{
+            width: 400,
+            boxShadow: "none",
+            border: "none",
+            height: "600px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+          className="featured"
+        >
           <CardMedia
             className="featured--photo"
             component="img"
-            alt="Mocha Cake"
-            height="400"
-            image="./images/mocha_cake_1.png"
+            alt="Orange-Strawberry Fondant"
+            height="375"
+            image="./images/orange_strawberry_fondant_cake_1.png"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{ color: "#ce65cc", fontWeight: "bold", fontFamily:"Varela Round" }}
+            >
+              Orange-Strawberry Fondant
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+            <Typography variant="body2" sx={{fontFamily:"Varela Round"}}>
+              Citrusy and sweet, try our orange-straberry fondant cake to
+              satisfy your fruity cravings.
             </Typography>
           </CardContent>
-          <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-            <Button size="large" color="secondary" sx={{ color: "#ce65cc" }}>
+          <CardActions
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "auto",
+            }}
+          >
+            <Button size="large" color="secondary" sx={{ color: "#ce65cc", fontFamily:"Varela Round" }}>
               View
             </Button>
           </CardActions>
         </Card>
 
-        <Card sx={{ maxWidth: 400 }} className="featured">
+        <Card
+          sx={{
+            width: 400,
+            boxShadow: "none",
+            border: "none",
+            height: "600px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+          className="featured"
+        >
           <CardMedia
             className="featured--photo"
             component="img"
-            alt="Mocha Cake"
-            height="400"
-            image="./images/mocha_cake_1.png"
+            alt="Strawberry Sponge Cake"
+            height="375"
+            image="./images/strawberry_sponge_cake_1.png"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{ color: "#ce65cc", fontWeight: "bold", fontFamily:"Varela Round" }}
+            >
+              Strawberry Sponge Cake
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+            <Typography variant="body2" sx={{fontFamily:"Varela Round"}}>
+              Strawberries, blueberries and raspberries combined together atop
+              soft sponge cake.
             </Typography>
           </CardContent>
-          <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-            <Button size="large" color="secondary" sx={{ color: "#ce65cc" }}>
+          <CardActions
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "auto",
+            }}
+          >
+            <Button size="large" color="secondary" sx={{ color: "#ce65cc", fontFamily:"Varela Round" }}>
               View
             </Button>
           </CardActions>
@@ -100,6 +160,7 @@ const MenuHome = () => {
             textDecoration: "none",
             fontWeight: "bold",
             fontSize: "1.1rem",
+            fontFamily:"Varela Round"
           }}
         >
           View All

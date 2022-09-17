@@ -4,7 +4,7 @@
     margin-bottom: 50px;
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width:1024px) {
     .menu--selections {
         flex-direction: column;
         justify-content: center;
@@ -13,11 +13,7 @@
     
 }
 
-.featured {
-    border: none;
-    box-shadow: none;
-}
 
 .featured--photo {
-    border-radius: 100%;
+    border-radius: 10px;
 }
