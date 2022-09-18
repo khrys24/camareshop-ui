@@ -10,162 +10,191 @@ import { Link } from "react-router-dom";
 
 const MenuHome = () => {
   return (
-    <div className="container my-5">
-      <div className="menu--selections gap-5">
-        <Card
-          sx={{
-            width: 400,
-            boxShadow: "none",
-            border: "none",
-            height: "600px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-          className="featured"
-        >
-          <CardMedia
-            className="featured--photo"
-            component="img"
-            alt="Black Forest Cake"
-            height="375"
-            image="./images/black_forest_cake_1.png"
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              sx={{ color: "#ce65cc", fontWeight: "bold", fontFamily:"Varela Round" }}
-            >
-              Black Forest Gâteau
-            </Typography>
-            <Typography variant="body2" sx={{fontFamily:"Varela Round"}}>
-              Consists of several layers of chocolate sponge cake sandwiched
-              with whipped cream and cherries.
-            </Typography>
-          </CardContent>
-          <CardActions
+    <div
+      className="container-fluid my-5 p-5"
+      style={{ backgroundColor: "white" }}
+    >
+      <div className="container">
+        <div className="menu--selections gap-5">
+          <Card
             sx={{
+              width: 400,
+              boxShadow: "none",
+              border: "none",
+              height: "550px",
               display: "flex",
-              justifyContent: "center",
-              marginTop: "auto",
+              flexDirection: "column",
             }}
+            className="featured"
           >
-            <Button size="large" color="secondary" sx={{ color: "#ce65cc", fontFamily:"Varela Round" }}>
-              View
-            </Button>
-          </CardActions>
-        </Card>
+            <CardMedia
+              className="featured--photo"
+              component="img"
+              alt="Black Forest Cake"
+              height="375"
+              image="./images/black_forest_cake_1.png"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{
+                  color: "#ce65cc",
+                  fontWeight: "bold",
+                  fontFamily: "Varela Round",
+                }}
+              >
+                Black Forest Gâteau
+              </Typography>
+              <Typography variant="body2" sx={{ fontFamily: "Varela Round" }}>
+                Consists of several layers of chocolate sponge cake sandwiched
+                with whipped cream and cherries.
+              </Typography>
+            </CardContent>
+            <CardActions
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "auto",
+              }}
+            >
+              <Button
+                size="large"
+                color="secondary"
+                sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
+              >
+                Try It
+              </Button>
+            </CardActions>
+          </Card>
 
-        <Card
-          sx={{
-            width: 400,
-            boxShadow: "none",
-            border: "none",
-            height: "600px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-          className="featured"
-        >
-          <CardMedia
-            className="featured--photo"
-            component="img"
-            alt="Orange-Strawberry Fondant"
-            height="375"
-            image="./images/orange_strawberry_fondant_cake_1.png"
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              sx={{ color: "#ce65cc", fontWeight: "bold", fontFamily:"Varela Round" }}
-            >
-              Orange-Strawberry Fondant
-            </Typography>
-            <Typography variant="body2" sx={{fontFamily:"Varela Round"}}>
-              Citrusy and sweet, try our orange-straberry fondant cake to
-              satisfy your fruity cravings.
-            </Typography>
-          </CardContent>
-          <CardActions
+          <Card
             sx={{
+              width: 400,
+              boxShadow: "none",
+              border: "none",
+              height: "550px",
               display: "flex",
-              justifyContent: "center",
-              marginTop: "auto",
+              flexDirection: "column",
             }}
+            className="featured"
           >
-            <Button size="large" color="secondary" sx={{ color: "#ce65cc", fontFamily:"Varela Round" }}>
-              View
-            </Button>
-          </CardActions>
-        </Card>
+            <CardMedia
+              className="featured--photo"
+              component="img"
+              alt="Orange-Strawberry Fondant"
+              height="375"
+              image="./images/orange_strawberry_fondant_cake_1.png"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{
+                  color: "#ce65cc",
+                  fontWeight: "bold",
+                  fontFamily: "Varela Round",
+                }}
+              >
+                Orange-Strawberry Fondant
+              </Typography>
+              <Typography variant="body2" sx={{ fontFamily: "Varela Round" }}>
+                Citrusy and sweet, try our orange-straberry fondant cake to
+                satisfy your fruity cravings.
+              </Typography>
+            </CardContent>
+            <CardActions
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "auto",
+              }}
+            >
+              <Button
+                size="large"
+                color="secondary"
+                sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
+              >
+                Try It
+              </Button>
+            </CardActions>
+          </Card>
 
-        <Card
-          sx={{
-            width: 400,
-            boxShadow: "none",
-            border: "none",
-            height: "600px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-          className="featured"
-        >
-          <CardMedia
-            className="featured--photo"
-            component="img"
-            alt="Strawberry Sponge Cake"
-            height="375"
-            image="./images/strawberry_sponge_cake_1.png"
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              sx={{ color: "#ce65cc", fontWeight: "bold", fontFamily:"Varela Round" }}
-            >
-              Strawberry Sponge Cake
-            </Typography>
-            <Typography variant="body2" sx={{fontFamily:"Varela Round"}}>
-              Strawberries, blueberries and raspberries combined together atop
-              soft sponge cake.
-            </Typography>
-          </CardContent>
-          <CardActions
+          <Card
             sx={{
+              width: 400,
+              boxShadow: "none",
+              border: "none",
+              height: "550px",
               display: "flex",
-              justifyContent: "center",
-              marginTop: "auto",
+              flexDirection: "column",
+            }}
+            className="featured"
+          >
+            <CardMedia
+              className="featured--photo"
+              component="img"
+              alt="Strawberry Sponge Cake"
+              height="375"
+              image="./images/strawberry_sponge_cake_1.png"
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{
+                  color: "#ce65cc",
+                  fontWeight: "bold",
+                  fontFamily: "Varela Round",
+                }}
+              >
+                Strawberry Sponge Cake
+              </Typography>
+              <Typography variant="body2" sx={{ fontFamily: "Varela Round" }}>
+                Strawberries, blueberries and raspberries combined together atop
+                soft sponge cake.
+              </Typography>
+            </CardContent>
+            <CardActions
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "auto",
+              }}
+            >
+              <Button
+                size="large"
+                color="secondary"
+                sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
+              >
+                Try It
+              </Button>
+            </CardActions>
+          </Card>
+        </div>
+        <Button
+          variant="outlined"
+          size="large"
+          color="secondary"
+          sx={{ color: "#ce65cc", border: "1px solid #ce65cc" }}
+        >
+          <Link
+            to="/menu"
+            style={{
+              color: "#ce65cc",
+              textDecoration: "none",
+              fontWeight: "bold",
+              fontSize: "1.1rem",
+              fontFamily: "Varela Round",
             }}
           >
-            <Button size="large" color="secondary" sx={{ color: "#ce65cc", fontFamily:"Varela Round" }}>
-              View
-            </Button>
-          </CardActions>
-        </Card>
+            View All
+          </Link>
+        </Button>
       </div>
-      <Button
-        variant="outlined"
-        size="large"
-        color="secondary"
-        sx={{ color: "#ce65cc", border: "1px solid #ce65cc" }}
-      >
-        <Link
-          to="/menu"
-          style={{
-            color: "#ce65cc",
-            textDecoration: "none",
-            fontWeight: "bold",
-            fontSize: "1.1rem",
-            fontFamily:"Varela Round"
-          }}
-        >
-          View All
-        </Link>
-      </Button>
     </div>
   );
 };

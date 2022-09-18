@@ -5,11 +5,15 @@ import { Link as RouterLink } from "react-router-dom";
 
 const ContactHome = () => {
   return (
-    <div
+    <div className="container-fluid" style={{
+      backgroundColor:"white"
+    }}>
+      <div className="container p-5">
+      <div
       style={{
         display: "flex",
         flexDirection: "column",
-        margin: "150px",
+        margin: "100px",
       }}
     >
 
@@ -45,6 +49,10 @@ const ContactHome = () => {
         </Button>
       </div>
     </div>
+      </div>
+
+    </div>
+
   );
 };
 
