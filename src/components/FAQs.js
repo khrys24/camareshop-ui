@@ -8,7 +8,7 @@ const FAQs = () => {
         id="FAQs"
         style={{ margin: "150px 0" }}
       >
-        <h3 style={{ margin: "100px 0" }}>Frequently Asked Questions</h3>
+        <h3 style={{ margin: "100px 0 50px 0" }}>Frequently Asked Questions</h3>
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
