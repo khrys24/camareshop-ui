@@ -6,13 +6,48 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, Navigate } from "react-router-dom";
 import { Link } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const Navbar = () => {
+const Navbar = ({user, onLogout}) => {
+  let btn = (
+
+    <Link to="/login" sx={{color:"white",  "&:hover": { color: "white" }}}>
+      <PersonIcon/>
+    </Link>
+
+  );
+  if (user.id) {
+    btn = (
+      <div className="dropdown">
+        <button
+          className="btn text-decoration-none dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          style={{color:"white"}}
+        >
+          {user.first_name}
+        </button>
+        <ul class="dropdown-menu">
+          <li
+            onClick={() => {
+              onLogout({});
+              <Navigate to="/" replace />;
+            }}
+            style={{cursor:"pointer", textAlign:"center"}}
+          >
+            Logout
+          </li>
+        </ul>
+      </div>
+    );
+  }
+
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -41,11 +76,11 @@ const Navbar = () => {
             <Button color="inherit">
               <ShoppingCartIcon />
             </Button>
-            <Button color="inherit">
-              <Link to="/register" component={RouterLink} color="inherit" sx={{"&:hover": { color: "white", transform:"scale(1.2)" }}}>
-                <PersonIcon />
-              </Link>
-            </Button>
+{            <Button color="inherit">
+              {<Link to="/login" component={RouterLink} color="inherit" sx={{"&:hover": { color: "white", transform:"scale(1.2)" }}}>
+                {btn}
+              </Link>}
+            </Button>}
           </Toolbar>
         </AppBar>
       </Box>
