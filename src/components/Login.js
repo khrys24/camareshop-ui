@@ -11,8 +11,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import LoginIcon from "@mui/icons-material/Login";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -41,14 +44,15 @@ const Login = ({ onLogin }) => {
           last_name: res.data.last_name,
           is_admin: res.data.is_admin,
         });
-        console.log(res.data);
+        navigate('/');
+
         setUser({
           email: "",
           password: "",
         });
       })
       .catch((err) => {
-        // console.log(err.response.data)
+
         swal("Error", err.response.data.message, "error");
       });
   };

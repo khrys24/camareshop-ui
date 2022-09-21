@@ -14,7 +14,7 @@ import React, { useState } from "react";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
-  console.log(loggedInUser);
+ 
 
 
   return (

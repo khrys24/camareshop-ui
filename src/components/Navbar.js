@@ -6,7 +6,7 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import { Link as RouterLink, Navigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -28,7 +28,7 @@ const Navbar = ({user, onLogout}) => {
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          style={{color:"white"}}
+          style={{color:"white", border:"0"}}
         >
           {user.first_name}
         </button>
@@ -36,7 +36,7 @@ const Navbar = ({user, onLogout}) => {
           <li
             onClick={() => {
               onLogout({});
-              <Navigate to="/" replace />;
+              
             }}
             style={{cursor:"pointer", textAlign:"center"}}
           >
@@ -70,7 +70,7 @@ const Navbar = ({user, onLogout}) => {
                 underline="none"
                 sx={{margin:"auto"}}
               >
-                <img src='./images/camare_cakes_logo_4.svg' style={{height:"70px"}}/>
+                <img src='./images/camare_cakes_logo_4.svg' alt="Camare Cakes" style={{height:"70px"}}/>
               </Link>
             
             <Button color="inherit">

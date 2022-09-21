@@ -112,7 +112,7 @@ const Footer = () => {
             Follow us
           </Typography>
           <div>
-            <Link href="https://facebook.com/">
+            <Link href="https://facebook.com/" target="_blank">
               <FacebookIcon
                 sx={{
                   height: "50px",
@@ -123,7 +123,7 @@ const Footer = () => {
                 }}
               />
             </Link>
-            <Link href="https://instagram.com/">
+            <Link href="https://instagram.com/" target="_blank">
               <InstagramIcon
                 sx={{
                   height: "50px",
@@ -134,7 +134,7 @@ const Footer = () => {
                 }}
               />
             </Link>
-            <Link href="https://github.com/">
+            <Link href="https://github.com/" target="_blank">
               <GitHubIcon
                 sx={{
                   height: "50px",
