@@ -12,7 +12,42 @@ import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const Navbar = () => {
+const Navbar = ({user, onLogout}) => {
+  let btn = (
+
+    <Link to="/login" sx={{color:"white",  "&:hover": { color: "white" }}}>
+      <PersonIcon/>
+    </Link>
+
+  );
+  if (user.id) {
+    btn = (
+      <div className="dropdown">
+        <button
+          className="btn text-decoration-none dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          style={{color:"white", border:"0"}}
+        >
+          {user.first_name}
+        </button>
+        <ul class="dropdown-menu">
+          <li
+            onClick={() => {
+              onLogout({});
+              
+            }}
+            style={{cursor:"pointer", textAlign:"center"}}
+          >
+            Logout
+          </li>
+        </ul>
+      </div>
+    );
+  }
+
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -35,17 +70,17 @@ const Navbar = () => {
                 underline="none"
                 sx={{margin:"auto"}}
               >
-                <img src='./images/camare_cakes_logo_4.svg' style={{height:"70px"}}/>
+                <img src='./images/camare_cakes_logo_4.svg' alt="Camare Cakes" style={{height:"70px"}}/>
               </Link>
             
             <Button color="inherit">
               <ShoppingCartIcon />
             </Button>
-            <Button color="inherit">
-              <Link to="/register" component={RouterLink} color="inherit" sx={{"&:hover": { color: "white", transform:"scale(1.2)" }}}>
-                <PersonIcon />
-              </Link>
-            </Button>
+{            <Button color="inherit">
+              {<Link to="/login" component={RouterLink} color="inherit" sx={{"&:hover": { color: "white", transform:"scale(1.2)" }}}>
+                {btn}
+              </Link>}
+            </Button>}
           </Toolbar>
         </AppBar>
       </Box>
