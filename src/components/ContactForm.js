@@ -4,6 +4,12 @@ import { Form, Button } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import "../css/ContactUs.css";
+import emailjs from 'emailjs-com';
+import Swal from 'sweetalert2';
+
+const SERVICE_ID = "service_4rdxq6w";
+const TEMPLATE_ID = "template_9egfotn";
+const USER_ID = "fuKqh5zVBD6TMEqcx";
 
 const ContactForm = () => {
   const [state, setState] = useState({
@@ -13,29 +19,6 @@ const ContactForm = () => {
     message: ''
   });
 
-  const [result, setResult] = useState(null);
-
-  const sendEmail = event => {
-    event.preventDefault();
-    axios
-      .post('/send', { ...state })
-      .then(response => {
-        setResult(response.data);
-        setState({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      })
-      .catch(() => {
-        setResult({
-          success: false,
-          message: 'Something went wrong. Try again later'
-        });
-      });
-  };
-
   const onInputChange = event => {
     const { name, value } = event.target;
 
@@ -43,8 +26,41 @@ const ContactForm = () => {
       ...state,
       [name]: value
     });
+
   };
 
+  const [result, setResult] = useState(null);
+  
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, USER_ID)
+    .then((result) => {
+      console.log(result.text);
+      Swal.fire({
+        icon: 'success',
+        title: 'Message Sent Successfully'
+      })
+      .then(function(){ 
+        window.location.reload();
+        }
+     );
+    }, (error) => {
+      console.log(error.text);
+      Swal.fire({
+        icon: 'error',
+        title: 'Ooops, something went wrong',
+        text: error.text,
+      })
+      
+    })
+    
+    e.target.reset();
+    
+    
+  };
+
+  
   return (
     <div>
       <h2>Contact Us</h2>
@@ -56,7 +72,6 @@ const ContactForm = () => {
       <form onSubmit={sendEmail} style={{width:"60%", margin: 'auto'}}>
         <Row className='mb-3'>
           <Form.Group as={Col} controlId="name">
-            <Form.Label>Full Name</Form.Label>
             <Form.Control
               type="text"
               name="name"
@@ -68,9 +83,8 @@ const ContactForm = () => {
          
           </Form.Group>
           <Form.Group as={Col} controlId="email">
-            <Form.Label>Email</Form.Label>
             <Form.Control
-              type="text"
+              type="email"
               name="email"
               value={state.email}
               placeholder="Enter your email"
@@ -81,7 +95,6 @@ const ContactForm = () => {
         </Row>
         
         <Form.Group controlId="subject">
-          <Form.Label>Subject</Form.Label>
           <Form.Control
             type="text"
             name="subject"
@@ -94,8 +107,7 @@ const ContactForm = () => {
           />
         </Form.Group>
 
-        <Form.Group controlId="subject">
-          <Form.Label>Message</Form.Label>
+        <Form.Group controlId="message">
           <Form.Control
             as="textarea"
             name="message"
@@ -107,7 +119,7 @@ const ContactForm = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" className='mt-3'>
+        <Button type="submit" className='mt-3' style={{backgroundColor: '#9c27b0'}}>
           Submit
         </Button>
       </form>
