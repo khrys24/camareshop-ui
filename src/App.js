@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.css";
 import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -11,7 +12,6 @@ import Privacy from "./components/Privacy";
 import About from "./components/About";
 import Login from "./components/Login";
 import ContactUs from "./pages/ContactUs";
-import React, { useState } from "react";
 
 
 function App() {

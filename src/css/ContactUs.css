@@ -14,11 +14,12 @@ input {
 
 textarea {
     height:200px;
+    
 }
 
 h2 {
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     margin-top: 150px;
     
 }
@@ -28,6 +29,8 @@ h2 {
     color: white;
     width: 100px;
     height: 40px;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
+    border: none;
 }
+
 
