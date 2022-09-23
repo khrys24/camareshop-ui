@@ -70,7 +70,7 @@ const Navbar = ({user, onLogout}) => {
                 underline="none"
                 sx={{margin:"auto"}}
               >
-                <img src='./images/camare_cakes_logo_4.svg' alt="Camare Cakes" style={{height:"70px"}}/>
+                <img src='./images/Camare_cakes.svg' alt="Camare Cakes" style={{height:"70px"}}/>
               </Link>
             
             <Button color="inherit">

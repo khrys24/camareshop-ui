@@ -10,7 +10,9 @@ import TermsOfService from "./components/TermsOfService";
 import Privacy from "./components/Privacy";
 import About from "./components/About";
 import Login from "./components/Login";
+import ContactUs from "./pages/ContactUs";
 import React, { useState } from "react";
+
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -25,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/contact" element={<ContactUs />}></Route>
           <Route path="/FAQs" element={<FAQs />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/termsofservice" element={<TermsOfService />}></Route>
