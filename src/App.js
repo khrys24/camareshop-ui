@@ -14,14 +14,12 @@ import React, { useState } from "react";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
- 
-
 
   return (
     <div className="App">
       <BrowserRouter>
-      <ScrollToTop/>
-      <Navbar user={loggedInUser} onLogout={setLoggedInUser}/>
+        <ScrollToTop />
+        <Navbar user={loggedInUser} onLogout={setLoggedInUser} />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/register" element={<Register />}></Route>
@@ -29,9 +27,12 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/termsofservice" element={<TermsOfService />}></Route>
           <Route path="/privacy" element={<Privacy />}></Route>
-          <Route path="/login" element={<Login onLogin={setLoggedInUser} />}></Route>
+          <Route
+            path="/login"
+            element={<Login onLogin={setLoggedInUser} />}
+          ></Route>
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );
