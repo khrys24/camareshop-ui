@@ -14,7 +14,6 @@ import Login from "./components/Login";
 import ContactUs from "./pages/ContactUs";
 import Products from "./pages/Products";
 import AddToCart from "./pages/AddToCart";
-import React, { useState } from "react";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
