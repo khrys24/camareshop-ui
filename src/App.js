@@ -14,6 +14,7 @@ import Login from "./components/Login";
 import ContactUs from "./pages/ContactUs";
 import AddToCart from "./pages/AddToCart";
 import ProductCard from "./components/ProductCard";
+import Products from "./pages/Products";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -46,7 +47,7 @@ function App() {
             path="/login"
             element={<Login onLogin={setLoggedInUser} />}
           ></Route>
-          <Route path="/products" element={<ProductCard />}></Route>
+          <Route path="/products" element={<Products />}></Route>
           <Route path="/addtocart" element={<AddToCart />}></Route>
         </Routes>
         <Footer />
