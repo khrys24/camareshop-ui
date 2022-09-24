@@ -5,6 +5,8 @@ import { Link } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 const Navbar = ({ user, onLogout }) => {
   let btn = (
@@ -14,13 +16,18 @@ const Navbar = ({ user, onLogout }) => {
   );
   if (user.id) {
     btn = (
-      <div className="dropdown">
+      <div className="dropdown" style={{ height: "40px" }}>
         <button
           className="btn text-decoration-none dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          style={{ color: "white", border: "0" }}
+          style={{
+            color: "white",
+            border: "0",
+            display: "flex",
+            alignItems: "center",
+          }}
         >
           {user.first_name}
         </button>
@@ -30,6 +37,7 @@ const Navbar = ({ user, onLogout }) => {
               onLogout({});
               localStorage.removeItem("email");
               localStorage.removeItem("isLoggedIn");
+              localStorage.removeItem("User_Details");
             }}
             style={{
               cursor: "pointer",
@@ -45,6 +53,15 @@ const Navbar = ({ user, onLogout }) => {
     );
   }
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -55,67 +72,61 @@ const Navbar = ({ user, onLogout }) => {
             position: "fixed",
             top: "0",
             zIndex: "5",
+            height: "75px",
           }}
         >
           <Toolbar>
-            <div className="dropdown">
-              <button
-                className="btn dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                style={{ color: "white", border: "none" }}
-              >
-                <MenuIcon />
-              </button>
-              <ul className="dropdown-menu">
-                <li>
-                  <button className="dropdown-item" type="button">
-                    <Link
-                      to="/about"
-                      component={RouterLink}
-                      color="inherit"
-                      sx={{
-                        textDecoration: "none",
-                        "&:hover": { color: "inherit" },
-                      }}
-                    >
-                      About
-                    </Link>
-                  </button>
-                </li>
-                <li>
-                  <button className="dropdown-item" type="button">
-                    <Link
-                      to="/menu"
-                      component={RouterLink}
-                      color="inherit"
-                      sx={{
-                        textDecoration: "none",
-                        "&:hover": { color: "inherit" },
-                      }}
-                    >
-                      Menu
-                    </Link>
-                  </button>
-                </li>
-                <li>
-                  <button className="dropdown-item" type="button">
-                    <Link
-                      to="/contact"
-                      component={RouterLink}
-                      color="inherit"
-                      sx={{
-                        textDecoration: "none",
-                        "&:hover": { color: "inherit" },
-                      }}
-                    >
-                      Contact
-                    </Link>
-                  </button>
-                </li>
-              </ul>
-            </div>
+            <Button
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              color="inherit"
+            >
+              <MenuIcon />
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              PaperProps={{ sx: { width: "250px" } }}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={handleClose}>
+                <Link
+                  to="/about"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  About
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  to="/products"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  Menu
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  to="/contact"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  Contact
+                </Link>
+              </MenuItem>
+            </Menu>
 
             <Link
               to="/"
@@ -132,7 +143,14 @@ const Navbar = ({ user, onLogout }) => {
             </Link>
 
             <Button color="inherit">
-              <ShoppingCartIcon />
+              <Link
+                to="/addtocart"
+                component={RouterLink}
+                color="inherit"
+                sx={{ "&:hover": { color: "white" } }}
+              >
+                <ShoppingCartIcon />
+              </Link>
             </Button>
             {
               <Button color="inherit">
