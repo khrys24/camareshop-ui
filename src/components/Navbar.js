@@ -1,44 +1,50 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Button,
-  Box,
-} from "@mui/material";
+import { AppBar, Toolbar, Button, Box } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
-const Navbar = ({user, onLogout}) => {
+const Navbar = ({ user, onLogout }) => {
   let btn = (
-
-    <Link to="/login" sx={{color:"white",  "&:hover": { color: "white" }}}>
-      <PersonIcon/>
+    <Link to="/login" sx={{ color: "white", "&:hover": { color: "white" } }}>
+      <PersonIcon />
     </Link>
-
   );
   if (user.id) {
     btn = (
-      <div className="dropdown">
+      <div className="dropdown" style={{ height: "40px" }}>
         <button
           className="btn text-decoration-none dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          style={{color:"white", border:"0"}}
+          style={{
+            color: "white",
+            border: "0",
+            display: "flex",
+            alignItems: "center",
+          }}
         >
           {user.first_name}
         </button>
-        <ul class="dropdown-menu">
+        <ul className="dropdown-menu">
           <li
             onClick={() => {
               onLogout({});
-              
+              localStorage.removeItem("email");
+              localStorage.removeItem("isLoggedIn");
+              localStorage.removeItem("User_Details");
             }}
-            style={{cursor:"pointer", textAlign:"center"}}
+            style={{
+              cursor: "pointer",
+              textAlign: "center",
+              fontSize: "16px",
+              textTransform: "capitalize",
+            }}
           >
             Logout
           </li>
@@ -47,40 +53,119 @@ const Navbar = ({user, onLogout}) => {
     );
   }
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: "#9c27b0", position:"fixed", top:"0", zIndex:"5" }}>
+        <AppBar
+          position="static"
+          sx={{
+            backgroundColor: "#9c27b0",
+            position: "fixed",
+            top: "0",
+            zIndex: "5",
+            height: "75px",
+          }}
+        >
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
+            <Button
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
               color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
             >
               <MenuIcon />
-            </IconButton>
-            
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              PaperProps={{ sx: { width: "250px" } }}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={handleClose}>
+                <Link
+                  to="/about"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  About
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  to="/products"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  Menu
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  to="/contact"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  Contact
+                </Link>
+              </MenuItem>
+            </Menu>
+
+            <Link
+              to="/"
+              component={RouterLink}
+              color="inherit"
+              underline="none"
+              sx={{ margin: "auto" }}
+            >
+              <img
+                src="./images/camare_cakes_logo_4.svg"
+                alt="Camare Cakes"
+                style={{ height: "70px" }}
+              />
+            </Link>
+
+            <Button color="inherit">
               <Link
-                to="/"
+                to="/addtocart"
                 component={RouterLink}
                 color="inherit"
-                underline="none"
-                sx={{margin:"auto"}}
+                sx={{ "&:hover": { color: "white" } }}
               >
-                <img src='./images/Camare_cakes.svg' alt="Camare Cakes" style={{height:"70px"}}/>
+                <ShoppingCartIcon />
               </Link>
-            
-            <Button color="inherit">
-              <ShoppingCartIcon />
             </Button>
-{            <Button color="inherit">
-              {<Link to="/login" component={RouterLink} color="inherit" sx={{"&:hover": { color: "white", transform:"scale(1.2)" }}}>
-                {btn}
-              </Link>}
-            </Button>}
+            {
+              <Button color="inherit">
+                {
+                  <Link
+                    to="/login"
+                    component={RouterLink}
+                    color="inherit"
+                    sx={{ "&:hover": { color: "white" } }}
+                  >
+                    {btn}
+                  </Link>
+                }
+              </Button>
+            }
           </Toolbar>
         </AppBar>
       </Box>
