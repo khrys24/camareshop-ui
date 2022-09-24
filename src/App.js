@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -12,31 +12,44 @@ import Privacy from "./components/Privacy";
 import About from "./components/About";
 import Login from "./components/Login";
 import ContactUs from "./pages/ContactUs";
-import Products from "./pages/Products";
 import AddToCart from "./pages/AddToCart";
-import React, { useState } from "react";
+import ProductCard from "./components/ProductCard";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
 
+  useEffect(() => {
+    const details = localStorage.getItem("User_Details");
+    if (details) {
+      setLoggedInUser(JSON.parse(details));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("User_Details", JSON.stringify(loggedInUser));
+  },);
+
   return (
     <div className="App">
       <BrowserRouter>
-        <ScrollToTop/>
-        <Navbar user={loggedInUser} onLogout={setLoggedInUser}/>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="/contact" element={<ContactUs />}></Route>
-            <Route path="/FAQs" element={<FAQs />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/termsofservice" element={<TermsOfService />}></Route>
-            <Route path="/privacy" element={<Privacy />}></Route>
-            <Route path="/login" element={<Login onLogin={setLoggedInUser} />}></Route>
-            <Route path="/products" element={<Products />}></Route>
-            <Route path="/addtocart" element={<AddToCart />}></Route>
-          </Routes>
-        <Footer/>
+        <ScrollToTop />
+        <Navbar user={loggedInUser} onLogout={setLoggedInUser} />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/contact" element={<ContactUs />}></Route>
+          <Route path="/FAQs" element={<FAQs />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/termsofservice" element={<TermsOfService />}></Route>
+          <Route path="/privacy" element={<Privacy />}></Route>
+          <Route
+            path="/login"
+            element={<Login onLogin={setLoggedInUser} />}
+          ></Route>
+          <Route path="/products" element={<ProductCard />}></Route>
+          <Route path="/addtocart" element={<AddToCart />}></Route>
+        </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

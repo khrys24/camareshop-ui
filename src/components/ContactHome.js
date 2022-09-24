@@ -8,7 +8,7 @@ const ContactHome = () => {
     <div className="container-fluid" style={{
       backgroundColor:"white"
     }}>
-      <div className="container p-5">
+      <div className="container pb-5">
       <div
       style={{
         display: "flex",

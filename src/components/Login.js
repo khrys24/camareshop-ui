@@ -43,6 +43,9 @@ const Login = ({ onLogin }) => {
           first_name: res.data.first_name,
           last_name: res.data.last_name,
           is_admin: res.data.is_admin,
+          address: res.data.address,
+          phone_number: res.data.phone_number,
+          
         });
         navigate('/');
 
@@ -55,6 +58,8 @@ const Login = ({ onLogin }) => {
 
         swal("Error", err.response.data.message, "error");
       });
+      localStorage.setItem("email", user.email);
+      localStorage.setItem("isLoggedIn", JSON.stringify(true));
   };
 
   return (
