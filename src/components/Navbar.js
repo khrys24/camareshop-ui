@@ -10,11 +10,13 @@ import MenuItem from "@mui/material/MenuItem";
 
 const Navbar = ({ user, onLogout }) => {
   let btn = (
-    <Link to="/login" sx={{ color: "white", "&:hover": { color: "white" } }}>
+    <Link to="/login" style={{ color: "white", "&:hover": { color: "white" } }}>
       <PersonIcon />
     </Link>
   );
-  if (user.id) {
+
+  if (user.id || localStorage.getItem("User_Details")) {
+    let userName = JSON.parse(localStorage.getItem("User_Details")).first_name;
     btn = (
       <div className="dropdown" style={{ height: "40px" }}>
         <button
@@ -29,7 +31,7 @@ const Navbar = ({ user, onLogout }) => {
             alignItems: "center",
           }}
         >
-          {user.first_name}
+          {userName}
         </button>
         <ul className="dropdown-menu">
           <li

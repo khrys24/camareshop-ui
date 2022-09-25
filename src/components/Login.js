@@ -13,7 +13,7 @@ import Container from "@mui/material/Container";
 import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, details }) => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -37,6 +37,7 @@ const Login = ({ onLogin }) => {
     axios
       .post("http://localhost:3001/users/login", data)
       .then((res) => {
+        localStorage.setItem("User_Details", JSON.stringify(res.data));
         swal("Success", "Logged in successfully", "success");
         onLogin({
           id: res.data.user_id,
@@ -45,9 +46,8 @@ const Login = ({ onLogin }) => {
           is_admin: res.data.is_admin,
           address: res.data.address,
           phone_number: res.data.phone_number,
-          
         });
-        navigate('/');
+        navigate("/");
 
         setUser({
           email: "",
@@ -55,11 +55,11 @@ const Login = ({ onLogin }) => {
         });
       })
       .catch((err) => {
-
         swal("Error", err.response.data.message, "error");
       });
-      localStorage.setItem("email", user.email);
-      localStorage.setItem("isLoggedIn", JSON.stringify(true));
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("isLoggedIn", JSON.stringify(true));
+    
   };
 
   return (
