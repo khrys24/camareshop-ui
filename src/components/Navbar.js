@@ -9,14 +9,36 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 const Navbar = ({ user, onLogout }) => {
+  const userList = user.is_admin ? (
+    <Link to="/users" component={RouterLink} color="inherit" underline="none">
+      User List
+    </Link>
+  ) : (
+    ""
+  );
+
+  const productList = user.is_admin ? (
+    <Link
+      to="/productlist"
+      component={RouterLink}
+      color="inherit"
+      underline="none"
+    >
+      Product List
+    </Link>
+  ) : (
+    ""
+  );
+
   let btn = (
     <Link to="/login" style={{ color: "white", "&:hover": { color: "white" } }}>
       <PersonIcon />
     </Link>
   );
 
-  if (user.id || localStorage.getItem("User_Details")) {
+  if (user.id || localStorage.getItem("isLoggedIn")) {
     let userName = JSON.parse(localStorage.getItem("User_Details")).first_name;
+
     btn = (
       <div className="dropdown" style={{ height: "40px" }}>
         <button
@@ -128,6 +150,8 @@ const Navbar = ({ user, onLogout }) => {
                   Contact
                 </Link>
               </MenuItem>
+              <MenuItem onClick={handleClose}>{userList}</MenuItem>
+              <MenuItem onClick={handleClose}>{productList}</MenuItem>
             </Menu>
 
             <Link

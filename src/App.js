@@ -14,6 +14,9 @@ import Login from "./components/Login";
 import ContactUs from "./pages/ContactUs";
 import AddToCart from "./pages/AddToCart";
 import Products from "./pages/Products";
+import UserList from "./components/UserList";
+import ProductList from "./components/ProductList";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -37,6 +40,22 @@ function App() {
           ></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/addtocart" element={<AddToCart />}></Route>
+          <Route
+            path="/users"
+            element={
+              <AdminRoute user={loggedInUser}>
+                <UserList />
+              </AdminRoute>
+            }
+          ></Route>
+          <Route
+            path="/productList"
+            element={
+              <AdminRoute user={loggedInUser}>
+                <ProductList />
+              </AdminRoute>
+            }
+          ></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
