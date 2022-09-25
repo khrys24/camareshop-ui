@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -13,22 +13,10 @@ import About from "./components/About";
 import Login from "./components/Login";
 import ContactUs from "./pages/ContactUs";
 import AddToCart from "./pages/AddToCart";
-import ProductCard from "./components/ProductCard";
 import Products from "./pages/Products";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
-
-  useEffect(() => {
-    const details = localStorage.getItem("User_Details");
-    if (details) {
-      setLoggedInUser(JSON.parse(details));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("User_Details", JSON.stringify(loggedInUser));
-  },);
 
   return (
     <div className="App">
@@ -45,7 +33,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />}></Route>
           <Route
             path="/login"
-            element={<Login onLogin={setLoggedInUser} />}
+            element={<Login onLogin={setLoggedInUser} details={loggedInUser} />}
           ></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/addtocart" element={<AddToCart />}></Route>

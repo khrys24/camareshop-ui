@@ -27,7 +27,7 @@ const Hero = () => {
           }}
         >
           <Link
-            to="/menu"
+            to="/products"
             style={{
               color: "#ce65cc",
               textDecoration: "none",
@@ -44,6 +44,7 @@ const Hero = () => {
           src="./images/mocha_cake_1.png"
           className="hero--photo"
           style={{ maxHeight: "500px" }}
+          alt= "Mocha Cake"
         />
       </div>
     </div>
