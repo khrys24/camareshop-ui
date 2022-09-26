@@ -17,6 +17,9 @@ import Products from "./pages/Products";
 import UserList from "./components/UserList";
 import ProductList from "./components/ProductList";
 import AdminRoute from "./components/AdminRoute";
+import UpdateUser from "./components/UpdateUser";
+import UpdateProducts from "./components/UpdateProducts";
+import AddProduct from "./components/AddProduct";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
@@ -40,22 +43,45 @@ function App() {
           ></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/addtocart" element={<AddToCart />}></Route>
-          <Route
-            path="/users"
-            element={
-              <AdminRoute user={loggedInUser}>
-                <UserList />
-              </AdminRoute>
-            }
-          ></Route>
-          <Route
-            path="/productList"
-            element={
-              <AdminRoute user={loggedInUser}>
-                <ProductList />
-              </AdminRoute>
-            }
-          ></Route>
+          <Route path="/addproduct" element={<AddProduct />}> </Route>
+          <Route path="/users">
+            <Route
+              index
+              element={
+                <AdminRoute user={loggedInUser}>
+                  <UserList />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path=":id"
+              element={
+                <AdminRoute user={loggedInUser}>
+                  <UpdateUser />
+                </AdminRoute>
+              }
+            ></Route>
+          </Route>
+
+          <Route path="/productList">
+            <Route
+              index
+              element={
+                <AdminRoute user={loggedInUser}>
+                  <ProductList />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path=":id"
+              element={
+                <AdminRoute user={loggedInUser}>
+                  <UpdateProducts />
+                </AdminRoute>
+              }
+            ></Route>
+            
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>

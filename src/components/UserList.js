@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { Button } from "@mui/material";
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
@@ -12,14 +15,54 @@ const UserList = () => {
     });
   }, []);
 
+  const deleteUser = (e, id) => {
+    e.preventDefault();
+    const deleteBtn = e.target;
+    swal("Warning!", "Are you sure?", "warning", {
+      dangerMode: true,
+      buttons: true,
+    }).then((confirm) => {
+      if (!confirm) {
+        return;
+      }
+      axios
+        .delete(`http://localhost:3001/users/${id}`)
+        .then((res) => {
+          swal("Deleted", res.data.message, "success");
+          deleteBtn.closest("tr").remove();
+        })
+        .catch((err) => {
+          swal("Error", "Unable to delete", "error");
+        });
+    });
+  };
+
   const renderedUsers = userList.map((user) => {
     return (
       <tr key={user.user_id}>
+        <td>{user.user_id}</td>
         <td>{user.first_name}</td>
         <td>{user.last_name}</td>
         <td>{user.email}</td>
         <td>{user.phone_number}</td>
         <td>{user.address}</td>
+        <td>{user.status}</td>
+        <td>{user.created_at}</td>
+        <td>{user.updated_at}</td>
+        <td>
+          <Link to={`/users/${user.user_id}`}>
+            <EditIcon sx={{ color: "gray" }} />
+          </Link>
+        </td>
+        <td>
+          <Button
+            id="basic-button"
+            sx={{ color: "red" }}
+            onClick={(e) => deleteUser(e, user.user_id)}
+          >
+            <DeleteForeverIcon />
+          </Button>
+        </td>
       </tr>
     );
   });
@@ -27,14 +70,18 @@ const UserList = () => {
   return (
     <div className="container" style={{ margin: "150px auto 500px auto" }}>
       <h4>User List</h4>
-      <table className="table">
+      <table className="table" style={{ textAlign: "left" }}>
         <thead>
           <tr>
+            <th>User ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
             <th>Phone Number</th>
             <th>Address</th>
+            <th>Status</th>
+            <th>Date Created</th>
+            <th>Date Updated</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
