@@ -15,35 +15,36 @@ const Hero = () => {
             whipped cream.
           </em>
         </p>
-        <Button
-          className="view--all--btn"
-          variant="outlined"
-          size="large"
-          color="secondary"
-          sx={{
+        <Link
+          to="/products"
+          style={{
             color: "#ce65cc",
-            border: "1px solid #ce65cc",
-            margin: "20px 0",
+            textDecoration: "none",
+            fontWeight: "bold",
+            fontSize: "1.1rem",
           }}
         >
-          <Link
-            to="/menu"
-            style={{
+          <Button
+            className="view--all--btn"
+            variant="outlined"
+            size="large"
+            color="secondary"
+            sx={{
               color: "#ce65cc",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "1.1rem",
+              border: "1px solid #ce65cc",
+              margin: "20px 0",
             }}
           >
             Check it out
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
       <div className="hero--photo">
         <img
           src="./images/mocha_cake_1.png"
           className="hero--photo"
           style={{ maxHeight: "500px" }}
+          alt="Mocha Cake"
         />
       </div>
     </div>

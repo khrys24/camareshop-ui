@@ -59,13 +59,15 @@ const MenuHome = () => {
                 marginTop: "auto",
               }}
             >
-              <Button
-                size="large"
-                color="secondary"
-                sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
-              >
-                Try It
-              </Button>
+              <Link to="/products" style={{ textDecoration: "none" }}>
+                <Button
+                  size="large"
+                  color="secondary"
+                  sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
+                >
+                  Try It
+                </Button>
+              </Link>
             </CardActions>
           </Card>
 
@@ -112,13 +114,15 @@ const MenuHome = () => {
                 marginTop: "auto",
               }}
             >
-              <Button
-                size="large"
-                color="secondary"
-                sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
-              >
-                Try It
-              </Button>
+              <Link to="/products" style={{ textDecoration: "none" }}>
+                <Button
+                  size="large"
+                  color="secondary"
+                  sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
+                >
+                  Try It
+                </Button>
+              </Link>
             </CardActions>
           </Card>
 
@@ -165,35 +169,38 @@ const MenuHome = () => {
                 marginTop: "auto",
               }}
             >
-              <Button
-                size="large"
-                color="secondary"
-                sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
-              >
-                Try It
-              </Button>
+              <Link to="/products" style={{ textDecoration: "none" }}>
+                <Button
+                  size="large"
+                  color="secondary"
+                  sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
+                >
+                  Try It
+                </Button>
+              </Link>
             </CardActions>
           </Card>
         </div>
-        <Button
-          variant="outlined"
-          size="large"
-          color="secondary"
-          sx={{ color: "#ce65cc", border: "1px solid #ce65cc" }}
+
+        <Link
+          to="/products"
+          style={{
+            color: "#ce65cc",
+            textDecoration: "none",
+            fontWeight: "bold",
+            fontSize: "1.1rem",
+            fontFamily: "Varela Round",
+          }}
         >
-          <Link
-            to="/menu"
-            style={{
-              color: "#ce65cc",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "1.1rem",
-              fontFamily: "Varela Round",
-            }}
+          <Button
+            variant="outlined"
+            size="large"
+            color="secondary"
+            sx={{ color: "#ce65cc", border: "1px solid #ce65cc" }}
           >
             View All
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
     </div>
   );

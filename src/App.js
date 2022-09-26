@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Register from "./components/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -13,22 +13,16 @@ import About from "./components/About";
 import Login from "./components/Login";
 import ContactUs from "./pages/ContactUs";
 import AddToCart from "./pages/AddToCart";
-import ProductCard from "./components/ProductCard";
 import Products from "./pages/Products";
+import UserList from "./components/UserList";
+import ProductList from "./components/ProductList";
+import AdminRoute from "./components/AdminRoute";
+import UpdateUser from "./components/UpdateUser";
+import UpdateProducts from "./components/UpdateProducts";
+import AddProduct from "./components/AddProduct";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
-
-  useEffect(() => {
-    const details = localStorage.getItem("User_Details");
-    if (details) {
-      setLoggedInUser(JSON.parse(details));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("User_Details", JSON.stringify(loggedInUser));
-  },);
 
   return (
     <div className="App">
@@ -45,10 +39,49 @@ function App() {
           <Route path="/privacy" element={<Privacy />}></Route>
           <Route
             path="/login"
-            element={<Login onLogin={setLoggedInUser} />}
+            element={<Login onLogin={setLoggedInUser} details={loggedInUser} />}
           ></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/addtocart" element={<AddToCart />}></Route>
+          <Route path="/addproduct" element={<AddProduct />}> </Route>
+          <Route path="/users">
+            <Route
+              index
+              element={
+                <AdminRoute user={loggedInUser}>
+                  <UserList />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path=":id"
+              element={
+                <AdminRoute user={loggedInUser}>
+                  <UpdateUser />
+                </AdminRoute>
+              }
+            ></Route>
+          </Route>
+
+          <Route path="/productList">
+            <Route
+              index
+              element={
+                <AdminRoute user={loggedInUser}>
+                  <ProductList />
+                </AdminRoute>
+              }
+            ></Route>
+            <Route
+              path=":id"
+              element={
+                <AdminRoute user={loggedInUser}>
+                  <UpdateProducts />
+                </AdminRoute>
+              }
+            ></Route>
+            
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>
