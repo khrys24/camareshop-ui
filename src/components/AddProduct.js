@@ -7,15 +7,15 @@ const AddProduct = () => {
     name: "",
     description: "",
     price: "",
-/*     image: "", */
+    image: "",
     error_list: {},
   });
 
   const onInputChange = (e) => {
     let value = e.target.value;
-/*     if (e.target.name === "image") {
+    if (e.target.name === "image") {
       value = e.target.files[0];
-    } */
+    }
 
     setProduct({
       ...product,
@@ -35,10 +35,10 @@ const AddProduct = () => {
       .then((res) => {
         swal("Success", "Added product successfully", "success");
         setProduct({
-            name: "",
-            description: "",
-            price: "",
-/*             image: "", */
+          name: "",
+          description: "",
+          price: "",
+          image: "",
           error_list: {},
         });
       })
@@ -49,7 +49,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container" style={{margin:"150px auto 500px auto"}}>
+    <div className="container" style={{ margin: "150px auto 500px auto" }}>
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
@@ -59,10 +59,11 @@ const AddProduct = () => {
             <div className="card-body">
               <form onSubmit={onFormSubmit} encType="multipart/form-data">
                 <div className="input-group mb-3">
-                  <label htmlFor="name" className="input-group-text">
+                  <label htmlFor="name" className="input-group-text" style={{width:"200px", height:"37px",}}>
                     Product Name:
                   </label>
                   <input
+                   style={{width:"200px", height:"37px",}}
                     className={`form-control ${
                       product.error_list.name ? "is-invalid" : ""
                     }`}
@@ -78,7 +79,7 @@ const AddProduct = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="description" className="input-group-text">
+                  <label htmlFor="description" className="input-group-text" style={{width:"200px"}}>
                     Product Description:
                   </label>
                   <textarea
@@ -97,10 +98,11 @@ const AddProduct = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="price" className="input-group-text">
+                  <label htmlFor="price" className="input-group-text" style={{width:"200px", height:"37px",}}>
                     Price:
                   </label>
                   <input
+                  style={{width:"200px", height:"37px",}}
                     className={`form-control ${
                       product.error_list.price ? "is-invalid" : ""
                     }`}
@@ -115,16 +117,16 @@ const AddProduct = () => {
                   </div>
                 </div>
 
-
-
-{/*                 <div className="input-group mb-3">
+                <div className="input-group mb-3">
                   <label
-                    htmlFor="password_confirmation"
+                    htmlFor="image"
                     className="input-group-text"
+                    style={{width:"200px", height:"37px",}}
                   >
                     Image Upload:
                   </label>
                   <input
+                  style={{width:"200px", height:"37px",}}
                     className={`form-control`}
                     name="image"
                     id="image"
@@ -132,7 +134,7 @@ const AddProduct = () => {
                     accept="image/*"
                     onChange={onInputChange}
                   />
-                </div> */}
+                </div>
 
                 <div className="input-group mb-3">
                   <input

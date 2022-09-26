@@ -10,7 +10,13 @@ import MenuItem from "@mui/material/MenuItem";
 
 const Navbar = ({ user, onLogout }) => {
   const userList = user.is_admin ? (
-    <Link to="/users" component={RouterLink} color="inherit" underline="none">
+    <Link
+      to="/users"
+      component={RouterLink}
+      color="inherit"
+      underline="none"
+      sx={{ "&:hover": { color: "inherit" } }}
+    >
       User List
     </Link>
   ) : (
@@ -23,6 +29,7 @@ const Navbar = ({ user, onLogout }) => {
       component={RouterLink}
       color="inherit"
       underline="none"
+      sx={{ "&:hover": { color: "inherit" } }}
     >
       Product List
     </Link>
@@ -122,6 +129,7 @@ const Navbar = ({ user, onLogout }) => {
             >
               <MenuItem onClick={handleClose}>
                 <Link
+                  sx={{ "&:hover": { color: "inherit" } }}
                   to="/about"
                   component={RouterLink}
                   color="inherit"
@@ -132,6 +140,7 @@ const Navbar = ({ user, onLogout }) => {
               </MenuItem>
               <MenuItem onClick={handleClose}>
                 <Link
+                  sx={{ "&:hover": { color: "inherit" } }}
                   to="/products"
                   component={RouterLink}
                   color="inherit"
@@ -142,6 +151,7 @@ const Navbar = ({ user, onLogout }) => {
               </MenuItem>
               <MenuItem onClick={handleClose}>
                 <Link
+                  sx={{ "&:hover": { color: "inherit" } }}
                   to="/contact"
                   component={RouterLink}
                   color="inherit"
