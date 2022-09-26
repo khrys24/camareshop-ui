@@ -57,10 +57,11 @@ const UpdateUser = () => {
             <div className="card-body">
               <form onSubmit={onFormSubmit}>
                 <div className="input-group mb-3">
-                  <label htmlFor="first_name" className="input-group-text">
+                  <label htmlFor="first_name" className="input-group-text" style={{width:"150px", height:"60px",}}>
                     First Name:
                   </label>
                   <input
+                  style={{width:"150px", height:"60px",}}
                     className={`form-control`}
                     name="first_name"
                     id="first_name"
@@ -71,10 +72,11 @@ const UpdateUser = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="last_name" className="input-group-text">
+                  <label htmlFor="last_name" className="input-group-text" style={{width:"150px", height:"60px",}}>
                     Last Name:
                   </label>
                   <input
+                  style={{width:"150px", height:"60px",}}
                     className={`form-control`}
                     name="last_name"
                     id="last_name"
@@ -99,10 +101,11 @@ const UpdateUser = () => {
                 </div> */}
 
                 <div className="input-group mb-3">
-                  <label htmlFor="phone_number" className="input-group-text">
+                  <label htmlFor="phone_number" className="input-group-text" style={{width:"150px", height:"60px",}}>
                     Phone Number:
                   </label>
                   <input
+                  style={{width:"150px", height:"60px",}}
                     className={`form-control`}
                     name="phone_number"
                     id="phone_number"
@@ -113,10 +116,11 @@ const UpdateUser = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="address" className="input-group-text">
+                  <label htmlFor="address" className="input-group-text" style={{width:"150px", height:"60px",}}>
                     Address:
                   </label>
                   <input
+                  style={{width:"150px", height:"60px",}}
                     className={`form-control`}
                     name="address"
                     id="address"
