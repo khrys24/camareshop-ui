@@ -117,7 +117,7 @@ const Login = ({ onLogin, details }) => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, backgroundColor: "#9c27b0" }}
+            sx={{ mt: 3, mb: 2, backgroundColor: "#9c27b0", "&:hover": { backgroundColor: "#ce65cc" } }}
           >
             Log In
           </Button>

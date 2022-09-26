@@ -5,13 +5,13 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
 const UpdateProducts = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [product, setProduct] = useState({
     name: "",
     description: "",
-/*     image: "", */
+    /*     image: "", */
     price: "",
   });
 
@@ -37,7 +37,7 @@ const UpdateProducts = () => {
     axios.post(`http://localhost:3001/products/${id}`, data).then((res) => {
       swal("Success!", res.data.message, "success");
     });
-    navigate("/productlist")
+    navigate("/productlist");
   };
 
   const onInputChange = (e) => {
@@ -55,10 +55,15 @@ const UpdateProducts = () => {
             <div className="card-body">
               <form onSubmit={onFormSubmit}>
                 <div className="input-group mb-3">
-                  <label htmlFor="name" className="input-group-text">
+                  <label
+                    htmlFor="name"
+                    className="input-group-text"
+                    style={{ width:"150px", height: "37px" }}
+                  >
                     Name:
                   </label>
                   <input
+                    style={{ width:"150px", height: "37px" }}
                     className={`form-control`}
                     name="name"
                     id="name"
@@ -69,10 +74,15 @@ const UpdateProducts = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="description" className="input-group-text">
+                  <label
+                    htmlFor="description"
+                    className="input-group-text"
+                    style={{ width:"150px", height: "100px" }}
+                  >
                     Description:
                   </label>
-                  <input
+                  <textarea
+                    style={{ width:"150px", height: "100px" }}
                     className={`form-control`}
                     name="description"
                     id="description"
@@ -82,7 +92,7 @@ const UpdateProducts = () => {
                   />
                 </div>
 
-                {/*                 <div className="input-group mb-3">
+{/*                              <div className="input-group mb-3">
                   <label htmlFor="image" className="input-group-text">
                     Image:
                   </label>
@@ -94,13 +104,18 @@ const UpdateProducts = () => {
                     onChange={onInputChange}
                     value={product.image}
                   />
-                </div> */}
+                </div>  */}
 
                 <div className="input-group mb-3">
-                  <label htmlFor="price" className="input-group-text">
+                  <label
+                    htmlFor="price"
+                    className="input-group-text"
+                    style={{ width:"150px", height: "37px" }}
+                  >
                     Price:
                   </label>
                   <input
+                    style={{ width:"150px", height: "37px" }}
                     className={`form-control`}
                     name="price"
                     id="price"
