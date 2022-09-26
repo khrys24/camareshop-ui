@@ -181,26 +181,26 @@ const MenuHome = () => {
             </CardActions>
           </Card>
         </div>
-        
-        <Button
-          variant="outlined"
-          size="large"
-          color="secondary"
-          sx={{ color: "#ce65cc", border: "1px solid #ce65cc" }}
+
+        <Link
+          to="/products"
+          style={{
+            color: "#ce65cc",
+            textDecoration: "none",
+            fontWeight: "bold",
+            fontSize: "1.1rem",
+            fontFamily: "Varela Round",
+          }}
         >
-          <Link
-            to="/products"
-            style={{
-              color: "#ce65cc",
-              textDecoration: "none",
-              fontWeight: "bold",
-              fontSize: "1.1rem",
-              fontFamily: "Varela Round",
-            }}
+          <Button
+            variant="outlined"
+            size="large"
+            color="secondary"
+            sx={{ color: "#ce65cc", border: "1px solid #ce65cc" }}
           >
             View All
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
     </div>
   );
