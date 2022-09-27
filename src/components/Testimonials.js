@@ -2,11 +2,11 @@ import React from "react";
 
 const Testimonials = () => {
   return (
-    <div className="container-fluid" style={{height:"400px", display:"flex", alignItems:"center", fontSize:"1.5rem", color:"#ce65cc", width:"60%", margin:"auto"}}>
+    <div className="container-fluid" style={{height:"400px", display:"flex", alignItems:"center", fontSize:"1.5rem", color:"#ce65cc"}}>
       <div className="container">
         <div
           id="carouselExampleControls"
-          className="carousel slide"
+          className="carousel slide carousel-dark"
           data-bs-ride="carousel"
         >
           <div className="carousel-inner">

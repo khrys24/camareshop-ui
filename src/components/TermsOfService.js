@@ -10,8 +10,7 @@ const TermsOfService = () => {
         flexDirection: "column",
         justifyContent: "flex-start",
         lineHeight: "2rem",
-        textAlign:"left",
-        margin:"100px auto"
+        textAlign: "left",
       }}
     >
       <h2 style={{ textAlign: "center", marginBottom: "50px" }}>
