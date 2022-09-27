@@ -57,10 +57,8 @@ const ContactForm = () => {
     
     e.target.reset();
     
-    
   };
 
-  
   return (
     <div>
       <h2>Contact Us</h2>
