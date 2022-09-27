@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
+import { styled } from '@mui/material/styles';
+import { tableCellClasses } from '@mui/material/TableCell';
 import {
     Table,
     TableBody,
@@ -14,8 +16,10 @@ import {
     Modal,
     Button,
     Box,
-    Grid
+    Grid,
+    Stack
 } from '@mui/material';
+// import { minHeight } from '@mui/system';
 
 const Order = () => {
     const [orders, setOrders] = useState([]);
@@ -38,41 +42,79 @@ const Order = () => {
         border: '2px solid #9c27b0',
         boxShadow: 24,
         p: 4,
+        padding: "0px"
     };
 
-    const handleOpen = (order) => {
-        // if (user.is_admin == '0' && order.status == 'pending') {
-        //     axios.delete('http://localhost:3001/orders/cancelorder')
-        //         .then(
-        //             swal("Are you sure you want to cancel this Order?", "", "warning")
-        //         )
+    const StyledTableCell = styled(TableCell)(({ theme }) => ({
+        [`&.${tableCellClasses.head}`]: {
+          backgroundColor: 'rgb(242, 165, 55)',
+          color: theme.palette.common.white,
+          padding: '5px'
+        },
+        [`&.${tableCellClasses.body}`]: {
+          fontSize: 14,
+          padding: '5px'
+        },
+      }));
+      
+      const StyledTableRow = styled(TableRow)(({ theme }) => ({
+        '&:nth-of-type(odd)': {
+          backgroundColor: theme.palette.action.hover,
+        },
+        // hide last border
+        '&:last-child td, &:last-child th': {
+          border: 0,
+        },
+      }));
 
-        // } else {
-            axios.get('http://localhost:3001/orders/items', {
-                params: {
-                    order_id: order.order_id,
-                }
-            })
-                .then((response) => {
-                    setOrderItems(response.data);
-                }).catch((err) => {
-                    console.log("error", err);
-                    swal("Error", err.message, "error");
-                });
-        // }
+    const handleOpen = (order) => {
+        axios.get('http://localhost:3001/orders/items', {
+            params: {
+                order_id: order.order_id,
+            }
+        })
+            .then((response) => {
+                setOrderItems(response.data);
+            }).catch((err) => {
+                console.log("error", err);
+                swal("Error", err.message, "error");
+            });
         setSelectedOrder(order);
         setOpen(true)
     };
     const handleClose = () => setOpen(false);
 
+    const cancelOrder = (order) => {
+        setSelectedOrder(order);
+        swal({
+            title: "Are you sure to cancel this order?",
+            text: "",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                order.status = 'cancelled';
+                update(order, 'Order has been cancelled!');
+            } else {
+              swal("Cake it is!", "Let's get the party started again!");
+            }
+          });
+    }
+
     const orderUpdate = () => {
+        update(selectedOrder, 'Status Updated!');
+    }
+
+    const update = (order, message) => {
         axios.post('http://localhost:3001/orders/statuschange', {
-            status: selectedOrder.status,
-            order_id: selectedOrder.order_id
+            status: order.status,
+            order_id: order.order_id
         })
             .then((response) => {
                 handleClose();
-                swal("Status Updated!", "", "success");
+                swal(message, "", "success");
                 getOrderList();
             })
     }
@@ -107,20 +149,20 @@ const Order = () => {
             >
                 Orders
             </Typography>
-            <TableContainer sx={{ marginTop: "50px", height: "50vh" }}>
+            <TableContainer sx={{ marginTop: "50px", height: "50vh", padding: "0px 90px" }}>
                 <Table sx={{ fontFamily: "Varela Round" }}>
                     <TableHead>
-                        <TableRow>
-                            <TableCell>Order ID</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Contact Number</TableCell>
-                            <TableCell>Address</TableCell>
-                            <TableCell>City</TableCell>
-                            <TableCell>Zipcode</TableCell>
-                            <TableCell>Date Delivered</TableCell>
-                            <TableCell>Total</TableCell>
-                            <TableCell>Status</TableCell>
-                            <TableCell
+                        <StyledTableRow>
+                            <StyledTableCell>Order ID</StyledTableCell>
+                            <StyledTableCell>Name</StyledTableCell>
+                            <StyledTableCell>Contact Number</StyledTableCell>
+                            <StyledTableCell>Address</StyledTableCell>
+                            <StyledTableCell>City</StyledTableCell>
+                            <StyledTableCell>Zipcode</StyledTableCell>
+                            {/* <StyledTableCell>Date Delivered</StyledTableCell> */}
+                            <StyledTableCell>Total</StyledTableCell>
+                            <StyledTableCell>Status</StyledTableCell>
+                            <StyledTableCell
                                 sx={{
                                     display: "flex",
                                     flexDirection: "row",
@@ -128,32 +170,34 @@ const Order = () => {
                                 }}
                             >
                                 Action
-                            </TableCell>
-                        </TableRow>
+                            </StyledTableCell>
+                        </StyledTableRow>
                     </TableHead>
                     <TableBody>
                         {
                             orders.map((order) => (
-                                <TableRow>
-                                    <TableCell>{order.order_id}</TableCell>
-                                    <TableCell>{order.name}</TableCell>
-                                    <TableCell>{order.contact_number}</TableCell>
-                                    <TableCell>{order.address}</TableCell>
-                                    <TableCell>{order.city}</TableCell>
-                                    <TableCell>{order.zipcode}</TableCell>
-                                    <TableCell>{order.date_delivered}</TableCell>
-                                    <TableCell>{order.total}</TableCell>
-                                    <TableCell>{order.status}</TableCell>
-                                    <TableCell sx={{
+                                <StyledTableRow>
+                                    <StyledTableCell>{order.order_id}</StyledTableCell>
+                                    <StyledTableCell>{order.name}</StyledTableCell>
+                                    <StyledTableCell>{order.contact_number}</StyledTableCell>
+                                    <StyledTableCell>{order.address}</StyledTableCell>
+                                    <StyledTableCell>{order.city}</StyledTableCell>
+                                    <StyledTableCell>{order.zipcode}</StyledTableCell>
+                                    {/* <StyledTableCell>{order.date_delivered}</StyledTableCell> */}
+                                    <StyledTableCell>{order.total}</StyledTableCell>
+                                    <StyledTableCell>{order.status}</StyledTableCell>
+                                    <StyledTableCell sx={{
                                         display: "flex",
                                         flexDirection: "row",
-                                        justifyContent: "center"
+                                        justifyContent: "center",
                                     }}
                                     >
                                         {(user && user.is_admin == '0') ?
-                                            <Button variant="outlined" color="error">
-                                                Cancel
-                                            </Button> :
+                                                order.status == 'pending' && 
+                                                <Button onClick={() => cancelOrder(order)} variant="outlined" color="error">
+                                                    Cancel
+                                                </Button>
+                                            :
                                             <Button onClick={() => handleOpen(order)} sx={{ color: "#ce65cc" }}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-square" viewBox="0 0 16 16">
                                                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -161,8 +205,8 @@ const Order = () => {
                                                 </svg>
                                             </Button>
                                         }
-                                    </TableCell>
-                                </TableRow>
+                                    </StyledTableCell>
+                                </StyledTableRow>
                             ))
                         }
                     </TableBody>
@@ -176,32 +220,45 @@ const Order = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                    <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                        sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            color: "white",
+                            fontWeight: "bold",
+                            fontFamily: "Varela Round",
+                            padding: "10px",
+                            backgroundColor: "rgb(242, 165, 55)"
+                        }}>
                         Order
                     </Typography>
-                    <Grid id="modal-modal-description">
+                    <Grid id="modal-modal-description" sx={{ padding: "10px 30px 30px 30px"}}>
                         <Typography sx={{ mt: 2 }}>
-                            Order #: {selectedOrder ? selectedOrder.order_id : ''}
+                            <b>Order #:</b> {selectedOrder ? selectedOrder.order_id : ''}
                         </Typography>
                         <Typography sx={{ mt: 2 }}>
-                            User: {selectedOrder ? selectedOrder.name : ''}
+                            <b>Customer name:</b> {selectedOrder ? selectedOrder.name : ''}
                         </Typography>
                         <Typography sx={{ mt: 2 }}>
-                            Contact Number: {selectedOrder ? selectedOrder.contact_number : ''}
+                            <b>Contact Number:</b> {selectedOrder ? selectedOrder.contact_number : ''}
                         </Typography>
                         <Typography sx={{ mt: 2 }}>
-                            Address: {selectedOrder ? selectedOrder.address : ''}
+                            <b>Address:</b> {selectedOrder ? selectedOrder.address : ''}
                         </Typography>
-                        <Typography sx={{ mt: 2 }}>
+                        {/* <Typography sx={{ mt: 2 }}>
                             Date Delivered: {selectedOrder ? selectedOrder.date_delivered : ''}
-                        </Typography>
+                        </Typography> */}
                         <Typography variant='h6'
                             sx={{
                                 display: "flex",
                                 justifyContent: "center",
                                 color: "#ce65cc",
                                 fontWeight: "bold",
-                                fontFamily: "Varela Round"
+                                fontFamily: "Varela Round",
+                                marginTop: "15px"
                             }}
                         >
                             Items:
@@ -209,37 +266,38 @@ const Order = () => {
                         <TableContainer>
                             <Table>
                                 <TableHead>
-                                    <TableRow>
-                                        <TableCell>Product</TableCell>
-                                        <TableCell>Price</TableCell>
-                                        <TableCell>Quantity</TableCell>
-                                        <TableCell>Total</TableCell>
-                                    </TableRow>
+                                    <StyledTableRow>
+                                        <StyledTableCell>Product</StyledTableCell>
+                                        <StyledTableCell>Price</StyledTableCell>
+                                        <StyledTableCell>Quantity</StyledTableCell>
+                                        <StyledTableCell>Total</StyledTableCell>
+                                    </StyledTableRow>
                                 </TableHead>
                                 <TableBody>
                                     {
                                         orderItems.map((orderItem) => (
-                                            <TableRow>
-                                                <TableCell>{orderItem.name}</TableCell>
-                                                <TableCell>{orderItem.price}</TableCell>
-                                                <TableCell>{orderItem.quantity}</TableCell>
-                                                <TableCell>{orderItem.total}</TableCell>
-                                            </TableRow>
+                                            <StyledTableRow>
+                                                <StyledTableCell>{orderItem.name}</StyledTableCell>
+                                                <StyledTableCell>{orderItem.price}</StyledTableCell>
+                                                <StyledTableCell>{orderItem.quantity}</StyledTableCell>
+                                                <StyledTableCell>{orderItem.total}</StyledTableCell>
+                                            </StyledTableRow>
                                         ))
                                     }
-                                    <TableRow>
-                                        <TableCell colSpan={3}>Total</TableCell>
-                                        <TableCell>{selectedOrder ? selectedOrder.total : 0}</TableCell>
-                                    </TableRow>
+                                    <StyledTableRow>
+                                        <StyledTableCell colSpan={3}><b>Total</b></StyledTableCell>
+                                        <StyledTableCell><b>{selectedOrder ? selectedOrder.total : 0}</b></StyledTableCell>
+                                    </StyledTableRow>
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        <Grid sx={{ display: "flex", flexDirection: "column", marginTop: "10px" }}>
-                            <Grid sx={{ display: "flex", flexDirection: "row"}}>
+                        <Grid sx={{ display: "flex", flexDirection: "column", marginTop: "10px", paddingTop: "10px" }}>
+                            <Grid sx={{ display: "flex", flexDirection: "row", marginBottom: "10px" }}>
                                 <Typography sx={{ alignSelf: "center" }}>
-                                    Status:
+                                    <b>Status:</b>
                                 </Typography>
                                 <TextField
+                                    size='small'
                                     id="status"
                                     name="status"
                                     select
@@ -253,11 +311,37 @@ const Order = () => {
                                     <MenuItem value="cancelled">Cancelled</MenuItem>
                                 </TextField>
                             </Grid>
-                            <Grid sx={{
+                            {/* <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                                <Typography sx={{ alignSelf: "center", marginRight: "10px"}}>
+                                    Date Delivered:
+                                </Typography>
+                                <TextField
+                                    size='small'
+                                    variant='outlined'
+                                    label='Date Delivered'
+                                    required
+                                    sx={{
+                                        width: "36%"
+                                    }}
+                                />
+                            </Grid> */}
+                            <Grid 
+                                sx={{
                                 display: "flex",
                                 justifyContent: "center",
-                                marginTop: "10px"
+                                marginTop: "10px",
                             }}>
+                                <Button 
+                                        onClick={handleClose}
+                                        variant='contained'
+                                        sx={{
+                                        marginRight: "7px",
+                                        backgroundColor: "#9c27b0",
+                                        "&:hover": { backgroundColor: "#ce65cc" }
+                                        }}
+                                >
+                                    Cancel
+                                </Button>
                                 <Button
                                     variant='contained'
                                     onClick={orderUpdate}
@@ -266,7 +350,7 @@ const Order = () => {
                                         "&:hover": { backgroundColor: "#ce65cc" }
                                     }}
                                 >
-                                    Save 
+                                    Save
                                 </Button>
                             </Grid>
                         </Grid>
