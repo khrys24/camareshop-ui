@@ -20,6 +20,8 @@ import AdminRoute from "./components/AdminRoute";
 import UpdateUser from "./components/UpdateUser";
 import UpdateProducts from "./components/UpdateProducts";
 import AddProduct from "./components/AddProduct";
+// import ProductCard from "./components/ProductCard";
+import Order from "./pages/Order";
 
 
 function App() {
@@ -83,6 +85,7 @@ function App() {
             ></Route>
             
           </Route>
+          <Route path="/orderlist" element={<Order />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
