@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import MenuBanner from '../components/MenuBanner';
 import ProductCard from '../components/ProductCard';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { Grid } from '@mui/material';
+import Context from "../components/store/Context";
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const context = useContext(Context);
+
 
   useEffect(() => {
     axios.get('http://localhost:3001/products/list')
