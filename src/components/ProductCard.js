@@ -9,12 +9,11 @@ import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = (props) => {
-    console.log('props.data =======>', props.data);
     const imageUrl = "http://localhost:3001/images/";
 
     const navigate = useNavigate();
 
-    const addToCart = () => {
+    const goToItem = () => {
         localStorage.setItem("selectedProduct", JSON.stringify(props.data));
         navigate("/addtocart");
     }
@@ -23,21 +22,20 @@ const ProductCard = (props) => {
         <Grid item lg={4} md={4} xs={12}>
             <Card
                 sx={{
-                    // width: 300,
                     boxShadow: "none",
                     border: "none",
                     display: "flex",
                     flexDirection: "column",
-                    objectFit: "cover"
                 }}
                 className="featured"
-            >
+                >
                 <CardMedia
                     className="featured--photo"
                     component="img"
                     alt={props.data.name}
                     height="375"
                     image={imageUrl + props.data.image}
+                    sx={{ objectFit: "cover" }}
                 />
                 <CardContent>
                     <Typography
@@ -71,7 +69,7 @@ const ProductCard = (props) => {
                         size="large"
                         color="secondary"
                         sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
-                        onClick={addToCart}
+                        onClick={goToItem}
                     >
                         Buy
                     </Button>

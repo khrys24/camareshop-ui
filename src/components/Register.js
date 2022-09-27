@@ -1,11 +1,10 @@
 import { React, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -17,19 +16,6 @@ import swal from "sweetalert";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 
-// function Copyright(props) {
-//     return (
-//         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//             {'Copyright © '}
-//             <Link color="inherit" href="https://mui.com/">
-//                 Your Website
-//             </Link>{' '}
-//             {new Date().getFullYear()}
-//             {'.'}
-//         </Typography>
-//     );
-// }
-
 const theme = createTheme();
 
 export default function Register() {
@@ -37,7 +23,7 @@ export default function Register() {
     getCities();
   }, []);
 
-  const [city, setCity] = useState(""); //City dropdown value
+  // const [city, setCity] = useState(""); //City dropdown value
   const [cities, setCities] = useState([]); //City list from Api
   const [user, setUser] = useState({
     first_name: "",
@@ -68,6 +54,8 @@ export default function Register() {
   //     setError('');
   //     return true;
   // }
+
+  const navigate = useNavigate();
 
   const getCities = async () => {
     const { data } = await axios.get("http://localhost:3001/users/cities");
@@ -100,6 +88,7 @@ export default function Register() {
       .post("http://localhost:3001/users/register", params)
       .then((res) => {
         swal("Registration Success!", "You're now Registered", "success");
+        navigate('/login');
         console.log(res.params);
         setUser({
           first_name: "",
@@ -120,10 +109,10 @@ export default function Register() {
       });
   };
 
-  const onCityChange = (e) => {
-    console.log("City: ", e.target.value);
-    setCity(e.target.value);
-  };
+  // const onCityChange = (e) => {
+  //   console.log("City: ", e.target.value);
+  //   setCity(e.target.value);
+  // };
 
   const onInputChange = (e, field) => {
     setUser({ ...user, [field]: e.target.value });
@@ -162,9 +151,8 @@ export default function Register() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  className={`form-control ${
-                    user.error_list.first_name ? "is-invalid" : ""
-                  } `}
+                  className={`form-control ${user.error_list.first_name ? "is-invalid" : ""
+                    } `}
                   autoComplete="given-name"
                   name="first_name"
                   required
@@ -181,9 +169,8 @@ export default function Register() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  className={`form-control ${
-                    user.error_list.last_name ? "is-invalid" : ""
-                  } `}
+                  className={`form-control ${user.error_list.last_name ? "is-invalid" : ""
+                    } `}
                   required
                   fullWidth
                   id="last_name"
@@ -199,9 +186,8 @@ export default function Register() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  className={`form-control ${
-                    user.error_list.phone_number ? "is-invalid" : ""
-                  } `}
+                  className={`form-control ${user.error_list.phone_number ? "is-invalid" : ""
+                    } `}
                   required
                   fullWidth
                   id="phone_number"
@@ -217,9 +203,8 @@ export default function Register() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  className={`form-control ${
-                    user.error_list.address ? "is-invalid" : ""
-                  } `}
+                  className={`form-control ${user.error_list.address ? "is-invalid" : ""
+                    } `}
                   required
                   fullWidth
                   id="address"
@@ -234,17 +219,16 @@ export default function Register() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  className={`form-control ${
-                    user.error_list.city_id ? "is-invalid" : ""
-                  } `}
-                  id="outlined-select-currency"
+                  className={`form-control ${user.error_list.city_id ? "is-invalid" : ""
+                    } `}
+                  id="dropdownCity"
                   select
                   label="City"
                   value={user.city}
                   name="city"
                   fullWidth
                   onChange={(e) => onInputChange(e, "city")}
-                  // onChange={onCityChange}
+                // onChange={onCityChange}
                 >
                   {cities.map((city) => (
                     <MenuItem key={city.city_id} value={city.city_id}>
@@ -270,9 +254,8 @@ export default function Register() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  className={`form-control ${
-                    user.error_list.email ? "is-invalid" : ""
-                  } `}
+                  className={`form-control ${user.error_list.email ? "is-invalid" : ""
+                    } `}
                   required
                   fullWidth
                   id="email"
@@ -282,7 +265,7 @@ export default function Register() {
                   autoComplete="email"
                   value={user.email}
                   onChange={(e) => onInputChange(e, "email")}
-                  // onChange={checkEmail}
+                // onChange={checkEmail}
                 />
                 <div className="invalid-feedback">
                   {user.error_list.email}
@@ -291,9 +274,8 @@ export default function Register() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  className={`form-control ${
-                    user.error_list.password ? "is-invalid" : ""
-                  } `}
+                  className={`form-control ${user.error_list.password ? "is-invalid" : ""
+                    } `}
                   required
                   fullWidth
                   name="password"
@@ -310,9 +292,8 @@ export default function Register() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  className={`form-control ${
-                    user.error_list.confirm_password ? "is-invalid" : ""
-                  } `}
+                  className={`form-control ${user.error_list.confirm_password ? "is-invalid" : ""
+                    } `}
                   required
                   fullWidth
                   name="confirm_password"
