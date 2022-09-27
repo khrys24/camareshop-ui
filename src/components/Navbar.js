@@ -196,6 +196,15 @@ const Navbar = ({ user, onLogout }) => {
               </Link>
               <Link
                 sx={{ "&:hover": { color: "inherit" } }}
+                to="/orderlist"
+                component={RouterLink}
+                color="inherit"
+                underline="none"
+              >
+                <MenuItem onClick={handleClose}>Orders</MenuItem>
+              </Link>
+              <Link
+                sx={{ "&:hover": { color: "inherit" } }}
                 to="/contact"
                 component={RouterLink}
                 color="inherit"

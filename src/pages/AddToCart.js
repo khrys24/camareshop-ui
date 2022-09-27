@@ -40,7 +40,7 @@ const AddToCart = (props) => {
 
             localStorage.setItem("cartItems", JSON.stringify(items));
 
-            swal("Added to Cart!", "", "success");
+            swal("Added to Cart!", "Let's get the party started!", "success");
 
             setTimeout(() => {
                 navigate("/products");
