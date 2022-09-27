@@ -14,7 +14,7 @@
 .hero--desc {
   justify-content: center;
   width: 50%;
-  padding: 140px 40px;
+  padding: auto 40px;
   margin: 0 auto;
   text-align: start;
 }
