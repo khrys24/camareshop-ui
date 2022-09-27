@@ -59,7 +59,6 @@ const Login = ({ onLogin, details }) => {
       });
     localStorage.setItem("email", user.email);
     localStorage.setItem("isLoggedIn", JSON.stringify(true));
-    
   };
 
   return (
@@ -117,7 +116,12 @@ const Login = ({ onLogin, details }) => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, backgroundColor: "#9c27b0", "&:hover": { backgroundColor: "#ce65cc" } }}
+            sx={{
+              mt: 3,
+              mb: 2,
+              backgroundColor: "#9c27b0",
+              "&:hover": { backgroundColor: "#ce65cc" },
+            }}
           >
             Log In
           </Button>
@@ -128,61 +132,6 @@ const Login = ({ onLogin, details }) => {
           </Link>
         </Box>
       </Container>
-
-      {/*       <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-header">
-              <h4>Login</h4>
-            </div>
-            <div className="card-body">
-              <form onSubmit={onFormSubmit}>
-                <div className="input-group mb-3">
-                  <label htmlFor="email" className="input-group-text">
-                    Email:
-                  </label>
-                  <input
-                    className={`form-control`}
-                    name="email"
-                    id="email"
-                    type="email"
-                    onChange={onInputChange}
-                    value={user.email}
-                  />
-                </div>
-
-                <div className="input-group mb-3">
-                  <label htmlFor="password" className="input-group-text">
-                    Password:
-                  </label>
-                  <input
-                    className={`form-control`}
-                    name="password"
-                    id="password"
-                    type="password"
-                    onChange={onInputChange}
-                    value={user.password}
-                  />
-                </div>
-
-                <div className="input-group mb-3">
-                  <input
-                    type="submit"
-                    value="Submit"
-                    className="btn btn-dark w-100"
-                  />
-                </div>
-              </form>
-            </div>
-          </div>
-          <Link
-            to="/register"
-            style={{ display: "flex", justifyContent: "end" }}
-          >
-            <small>Register</small>
-          </Link>
-        </div>
-      </div> */}
     </div>
   );
 };

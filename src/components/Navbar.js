@@ -9,7 +9,16 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 const Navbar = ({ user, onLogout }) => {
-  const userList = user.is_admin ? (
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  let userList = user.is_admin ? (
     <Link
       to="/users"
       component={RouterLink}
@@ -17,13 +26,32 @@ const Navbar = ({ user, onLogout }) => {
       underline="none"
       sx={{ "&:hover": { color: "inherit" } }}
     >
-      User List
+      <MenuItem onClick={handleClose}>User List</MenuItem>
     </Link>
   ) : (
     ""
   );
 
-  const productList = user.is_admin ? (
+  if (user.id || localStorage.getItem("isLoggedIn")) {
+    let checkAdmin = JSON.parse(localStorage.getItem("User_Details")).is_admin;
+
+    userList =
+      checkAdmin === 1 ? (
+        <Link
+          to="/users"
+          component={RouterLink}
+          color="inherit"
+          underline="none"
+          sx={{ "&:hover": { color: "inherit" } }}
+        >
+          <MenuItem onClick={handleClose}>User List</MenuItem>
+        </Link>
+      ) : (
+        ""
+      );
+  }
+
+  let productList = user.is_admin ? (
     <Link
       to="/productlist"
       component={RouterLink}
@@ -31,15 +59,36 @@ const Navbar = ({ user, onLogout }) => {
       underline="none"
       sx={{ "&:hover": { color: "inherit" } }}
     >
-      Product List
+      <MenuItem onClick={handleClose}>Product List</MenuItem>
     </Link>
   ) : (
     ""
   );
 
+  if (user.id || localStorage.getItem("isLoggedIn")) {
+    let checkAdmin = JSON.parse(localStorage.getItem("User_Details")).is_admin;
+
+    productList =
+      checkAdmin === 1 ? (
+        <Link
+          to="/productlist"
+          component={RouterLink}
+          color="inherit"
+          underline="none"
+          sx={{ "&:hover": { color: "inherit" } }}
+        >
+          <MenuItem onClick={handleClose}>Product List</MenuItem>
+        </Link>
+      ) : (
+        ""
+      );
+  }
+
   let btn = (
     <Link to="/login" style={{ color: "white", "&:hover": { color: "white" } }}>
-      <PersonIcon />
+      <Button color="inherit">
+        <PersonIcon />
+      </Button>
     </Link>
   );
 
@@ -84,15 +133,6 @@ const Navbar = ({ user, onLogout }) => {
     );
   }
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -127,41 +167,35 @@ const Navbar = ({ user, onLogout }) => {
                 "aria-labelledby": "basic-button",
               }}
             >
-              <MenuItem onClick={handleClose}>
-                <Link
-                  sx={{ "&:hover": { color: "inherit" } }}
-                  to="/about"
-                  component={RouterLink}
-                  color="inherit"
-                  underline="none"
-                >
-                  About
-                </Link>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link
-                  sx={{ "&:hover": { color: "inherit" } }}
-                  to="/products"
-                  component={RouterLink}
-                  color="inherit"
-                  underline="none"
-                >
-                  Menu
-                </Link>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Link
-                  sx={{ "&:hover": { color: "inherit" } }}
-                  to="/contact"
-                  component={RouterLink}
-                  color="inherit"
-                  underline="none"
-                >
-                  Contact
-                </Link>
-              </MenuItem>
-              <MenuItem onClick={handleClose}>{userList}</MenuItem>
-              <MenuItem onClick={handleClose}>{productList}</MenuItem>
+              <Link
+                sx={{ "&:hover": { color: "inherit" } }}
+                to="/about"
+                component={RouterLink}
+                color="inherit"
+                underline="none"
+              >
+                <MenuItem onClick={handleClose}>About</MenuItem>
+              </Link>
+              <Link
+                sx={{ "&:hover": { color: "inherit" } }}
+                to="/products"
+                component={RouterLink}
+                color="inherit"
+                underline="none"
+              >
+                <MenuItem onClick={handleClose}>Menu</MenuItem>
+              </Link>
+              <Link
+                sx={{ "&:hover": { color: "inherit" } }}
+                to="/contact"
+                component={RouterLink}
+                color="inherit"
+                underline="none"
+              >
+                <MenuItem onClick={handleClose}>Contact</MenuItem>
+              </Link>
+              {userList}
+              {productList}
             </Menu>
 
             <Link
