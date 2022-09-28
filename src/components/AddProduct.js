@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import { Link } from "react-router-dom";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -59,11 +60,15 @@ const AddProduct = () => {
             <div className="card-body">
               <form onSubmit={onFormSubmit} encType="multipart/form-data">
                 <div className="input-group mb-3">
-                  <label htmlFor="name" className="input-group-text" style={{width:"200px", height:"37px",}}>
+                  <label
+                    htmlFor="name"
+                    className="input-group-text"
+                    style={{ width: "200px", height: "37px" }}
+                  >
                     Product Name:
                   </label>
                   <input
-                   style={{width:"200px", height:"37px",}}
+                    style={{ width: "200px", height: "37px" }}
                     className={`form-control ${
                       product.error_list.name ? "is-invalid" : ""
                     }`}
@@ -79,7 +84,11 @@ const AddProduct = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="description" className="input-group-text" style={{width:"200px"}}>
+                  <label
+                    htmlFor="description"
+                    className="input-group-text"
+                    style={{ width: "200px" }}
+                  >
                     Product Description:
                   </label>
                   <textarea
@@ -98,11 +107,15 @@ const AddProduct = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="price" className="input-group-text" style={{width:"200px", height:"37px",}}>
+                  <label
+                    htmlFor="price"
+                    className="input-group-text"
+                    style={{ width: "200px", height: "37px" }}
+                  >
                     Price:
                   </label>
                   <input
-                  style={{width:"200px", height:"37px",}}
+                    style={{ width: "200px", height: "37px" }}
                     className={`form-control ${
                       product.error_list.price ? "is-invalid" : ""
                     }`}
@@ -121,12 +134,12 @@ const AddProduct = () => {
                   <label
                     htmlFor="image"
                     className="input-group-text"
-                    style={{width:"200px", height:"37px",}}
+                    style={{ width: "200px", height: "37px" }}
                   >
                     Image Upload:
                   </label>
                   <input
-                  style={{width:"200px", height:"37px",}}
+                    style={{ width: "200px", height: "37px" }}
                     className={`form-control`}
                     name="image"
                     id="image"
@@ -139,11 +152,30 @@ const AddProduct = () => {
                 <div className="input-group mb-3">
                   <input
                     type="submit"
-                    value="Submit"
-                    className="btn btn-dark w-100"
+                    value="Add Product"
+                    className="btn w-100"
+                    style={{
+                      backgroundColor: "#9c27b0",
+                      "&:hover": { backgroundColor: "#ce65cc" },
+                      color: "white", marginBottom: "10px"
+                    }}
                   />
                 </div>
               </form>
+              <div>
+                <Link to="/productList">
+                  <button
+                    className="btn w-100"
+                    style={{
+                      backgroundColor: "#9c27b0",
+                      "&:hover": { backgroundColor: "#ce65cc" },
+                      color: "white",
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

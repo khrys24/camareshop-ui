@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const UpdateProducts = () => {
   const navigate = useNavigate();
@@ -58,12 +58,12 @@ const UpdateProducts = () => {
                   <label
                     htmlFor="name"
                     className="input-group-text"
-                    style={{ width:"150px", height: "37px" }}
+                    style={{ width: "150px", height: "37px" }}
                   >
                     Name:
                   </label>
                   <input
-                    style={{ width:"150px", height: "37px" }}
+                    style={{ width: "150px", height: "37px" }}
                     className={`form-control`}
                     name="name"
                     id="name"
@@ -77,12 +77,12 @@ const UpdateProducts = () => {
                   <label
                     htmlFor="description"
                     className="input-group-text"
-                    style={{ width:"150px", height: "100px" }}
+                    style={{ width: "150px", height: "100px" }}
                   >
                     Description:
                   </label>
                   <textarea
-                    style={{ width:"150px", height: "100px" }}
+                    style={{ width: "150px", height: "100px" }}
                     className={`form-control`}
                     name="description"
                     id="description"
@@ -92,7 +92,7 @@ const UpdateProducts = () => {
                   />
                 </div>
 
-{/*                              <div className="input-group mb-3">
+                {/*                              <div className="input-group mb-3">
                   <label htmlFor="image" className="input-group-text">
                     Image:
                   </label>
@@ -110,12 +110,12 @@ const UpdateProducts = () => {
                   <label
                     htmlFor="price"
                     className="input-group-text"
-                    style={{ width:"150px", height: "37px" }}
+                    style={{ width: "150px", height: "37px" }}
                   >
                     Price:
                   </label>
                   <input
-                    style={{ width:"150px", height: "37px" }}
+                    style={{ width: "150px", height: "37px" }}
                     className={`form-control`}
                     name="price"
                     id="price"
@@ -128,11 +128,30 @@ const UpdateProducts = () => {
                 <div className="input-group mb-3">
                   <input
                     type="submit"
-                    value="Submit"
-                    className="btn btn-dark w-100"
+                    value="Update"
+                    className="btn w-100"
+                    style={{
+                      backgroundColor: "#9c27b0",
+                      "&:hover": { backgroundColor: "#ce65cc" },
+                      color: "white",
+                    }}
                   />
                 </div>
               </form>
+              <div>
+                <Link to="/productList">
+                  <button
+                    className="btn w-100"
+                    style={{
+                      backgroundColor: "#9c27b0",
+                      "&:hover": { backgroundColor: "#ce65cc" },
+                      color: "white",
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

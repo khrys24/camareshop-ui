@@ -4,7 +4,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
@@ -68,11 +68,21 @@ const UserList = () => {
   });
 
   return (
-    <div className="container" style={{ margin: "150px auto 500px auto" }}>
-      <h4>User List</h4>
+    <div style={{ margin: "auto auto 500px auto", width:"80%" }}>
+      <Typography variant="h2"
+                sx={{
+                    marginTop: "100px",
+                    marginBottom: "40px",
+                    color: "#ce65cc",
+                    fontWeight: "bold",
+                    fontFamily: "Varela Round"
+                }}
+            >
+                User List
+            </Typography>
       <table className="table" style={{ textAlign: "left" }}>
         <thead>
-          <tr>
+          <tr  style={{backgroundColor:"#f2a537", color:"white"}}>
             <th>User ID</th>
             <th>First Name</th>
             <th>Last Name</th>
