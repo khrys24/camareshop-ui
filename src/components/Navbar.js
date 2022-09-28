@@ -1,13 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { AppBar, Toolbar, Button, Box } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
 import Context from "./store/Context";
 import Cart from "./Cart";
 
@@ -141,7 +139,6 @@ const Navbar = ({ user, onLogout }) => {
   const [isToggle, setToggle] = useState(false);
   const context = useContext(Context);
 
-
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -237,14 +234,13 @@ const Navbar = ({ user, onLogout }) => {
                 color="inherit"
                 sx={{ "&:hover": { color: "white" } }}
               >
-                {/* <ShoppingCartIcon /> */}
                 <Cart
-          isToggle={isToggle}
-          setToggle={setToggle}
-          carts={context.carts}
-          removeProductFromCart={context.removeProductFromCart}
-          clearCart={context.clearCart}
-        />
+                  isToggle={isToggle}
+                  setToggle={setToggle}
+                  carts={context.carts}
+                  removeProductFromCart={context.removeProductFromCart}
+                  clearCart={context.clearCart}
+                />
               </Link>
             </Button>
             {

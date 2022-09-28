@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const UpdateUser = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const UpdateUser = () => {
     axios.post(`http://localhost:3001/users/${id}`, data).then((res) => {
       swal("Success!", res.data.message, "success");
     });
-    navigate("/users")
+    navigate("/users");
   };
 
   const onInputChange = (e) => {
@@ -57,11 +57,15 @@ const UpdateUser = () => {
             <div className="card-body">
               <form onSubmit={onFormSubmit}>
                 <div className="input-group mb-3">
-                  <label htmlFor="first_name" className="input-group-text" style={{width:"150px", height:"60px",}}>
+                  <label
+                    htmlFor="first_name"
+                    className="input-group-text"
+                    style={{ width: "150px", height: "60px" }}
+                  >
                     First Name:
                   </label>
                   <input
-                  style={{width:"150px", height:"60px",}}
+                    style={{ width: "150px", height: "60px" }}
                     className={`form-control`}
                     name="first_name"
                     id="first_name"
@@ -72,11 +76,15 @@ const UpdateUser = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="last_name" className="input-group-text" style={{width:"150px", height:"60px",}}>
+                  <label
+                    htmlFor="last_name"
+                    className="input-group-text"
+                    style={{ width: "150px", height: "60px" }}
+                  >
                     Last Name:
                   </label>
                   <input
-                  style={{width:"150px", height:"60px",}}
+                    style={{ width: "150px", height: "60px" }}
                     className={`form-control`}
                     name="last_name"
                     id="last_name"
@@ -101,11 +109,15 @@ const UpdateUser = () => {
                 </div> */}
 
                 <div className="input-group mb-3">
-                  <label htmlFor="phone_number" className="input-group-text" style={{width:"150px", height:"60px",}}>
+                  <label
+                    htmlFor="phone_number"
+                    className="input-group-text"
+                    style={{ width: "150px", height: "60px" }}
+                  >
                     Phone Number:
                   </label>
                   <input
-                  style={{width:"150px", height:"60px",}}
+                    style={{ width: "150px", height: "60px" }}
                     className={`form-control`}
                     name="phone_number"
                     id="phone_number"
@@ -116,11 +128,15 @@ const UpdateUser = () => {
                 </div>
 
                 <div className="input-group mb-3">
-                  <label htmlFor="address" className="input-group-text" style={{width:"150px", height:"60px",}}>
+                  <label
+                    htmlFor="address"
+                    className="input-group-text"
+                    style={{ width: "150px", height: "60px" }}
+                  >
                     Address:
                   </label>
                   <input
-                  style={{width:"150px", height:"60px",}}
+                    style={{ width: "150px", height: "60px" }}
                     className={`form-control`}
                     name="address"
                     id="address"
@@ -130,14 +146,34 @@ const UpdateUser = () => {
                   />
                 </div>
 
-                <div className="input-group mb-3">
+                <div className="input-group">
                   <input
                     type="submit"
-                    value="Submit"
-                    className="btn btn-dark w-100"
+                    value="Update"
+                    className="btn w-100"
+                    style={{
+                      backgroundColor: "#9c27b0",
+                      "&:hover": { backgroundColor: "#ce65cc" },
+                      color: "white",
+                      marginBottom: "20px",
+                    }}
                   />
                 </div>
               </form>
+              <div>
+                <Link to="/users">
+                  <button
+                    className="btn w-100"
+                    style={{
+                      backgroundColor: "#9c27b0",
+                      "&:hover": { backgroundColor: "#ce65cc" },
+                      color: "white",
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
