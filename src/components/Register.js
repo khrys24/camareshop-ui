@@ -38,27 +38,10 @@ export default function Register() {
     error_list: {},
   });
 
-  // const regEx =
-  //     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  // const [email, setEmail] = useState('');
-  // const [error, setError] = useState('');
-
-  // const checkEmail = (e) => {
-  //     setEmail(e.target.value);
-  // }
-
-  // if(regEx.test(email) === false) {
-  //     setError('Please enter valid email');
-  // } else {
-  //     setError('');
-  //     return true;
-  // }
-
   const navigate = useNavigate();
 
   const getCities = async () => {
-    const { data } = await axios.get("http://localhost:3001/users/cities");
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/cities`);
     console.log("cities: ", data);
     setCities(data);
   };
@@ -85,7 +68,7 @@ export default function Register() {
 
     // Registers a user
     axios
-      .post("http://localhost:3001/users/register", params)
+      .post(`${process.env.REACT_APP_API_URL}/users/register`, params)
       .then((res) => {
         swal("Registration Success!", "You're now Registered", "success");
         navigate('/login');

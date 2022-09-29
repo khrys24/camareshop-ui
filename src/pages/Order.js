@@ -66,23 +66,26 @@ const Order = () => {
     },
   }));
 
+  const orderUpdate = () => {
+    update(selectedOrder, "Status Updated!");
+  };
+
   const handleOpen = (order) => {
-    axios
-      .get("http://localhost:3001/orders/items", {
-        params: {
-          order_id: order.order_id,
-        },
-      })
+    axios.get(`${process.env.REACT_APP_API_URL}/orders/items`, {
+      params: {
+        order_id: order.order_id,
+      }
+    })
       .then((response) => {
         setOrderItems(response.data);
-      })
-      .catch((err) => {
+      }).catch((err) => {
         console.log("error", err);
         swal("Error", err.message, "error");
       });
     setSelectedOrder(order);
-    setOpen(true);
+    setOpen(true)
   };
+
   const handleClose = () => setOpen(false);
 
   const cancelOrder = (order) => {
@@ -93,52 +96,46 @@ const Order = () => {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        order.status = "cancelled";
-        update(order, "Order has been cancelled!");
-      } else {
-        swal("Cake it is!", "Let's get the party started again!");
-      }
-    });
-  };
-
-  const orderUpdate = () => {
-    update(selectedOrder, "Status Updated!");
-  };
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          order.status = 'cancelled';
+          update(order, 'Order has been cancelled!');
+        } else {
+          swal("Cake it is!", "Let's get the party started again!");
+        }
+      });
+  }
 
   const update = (order, message) => {
-    axios
-      .post("http://localhost:3001/orders/statuschange", {
-        status: order.status,
-        order_id: order.order_id,
-      })
+    axios.post(`${process.env.REACT_APP_API_URL}/orders/statuschange`, {
+      status: order.status,
+      order_id: order.order_id
+    })
       .then((response) => {
         handleClose();
         swal(message, "", "success");
         getOrderList();
-      });
-  };
+      })
+  }
 
   const getOrderList = () => {
     const details = JSON.parse(localStorage.getItem("User_Details"));
     setUser(details);
 
-    axios
-      .get("http://localhost:3001/orders/list", {
-        params: {
-          user_id: details.user_id,
-          is_admin: details.is_admin,
-        },
-      })
+    axios.get(`${process.env.REACT_APP_API_URL}/orders/list`, {
+      params: {
+        user_id: details.user_id,
+        is_admin: details.is_admin
+      }
+    })
       .then((response) => {
         setOrders(response.data);
-      })
-      .catch((err) => {
+      }).catch((err) => {
         console.log("error", err);
         swal("Error", err.message, "error");
       });
-  };
+  }
 
   return (
     <div>
@@ -168,15 +165,7 @@ const Order = () => {
               {/* <StyledTableCell>Date Delivered</StyledTableCell> */}
               <StyledTableCell>Total</StyledTableCell>
               <StyledTableCell>Status</StyledTableCell>
-              <StyledTableCell
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                }}
-              >
-                Action
-              </StyledTableCell>
+              <StyledTableCell>Action</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>

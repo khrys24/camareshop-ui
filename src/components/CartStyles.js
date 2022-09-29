@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 export const Icon = styled(FontAwesomeIcon)`
   padding: 5px;
   font-size: 20px;
-  color: #ffffff;
+  // color: #ffffff;
 `;
 
 export const CartCount = styled.span`
@@ -21,15 +21,15 @@ export const CartCount = styled.span`
   padding: 0px 7px;
   border-radius: 50px;
   background: #f05454;
-  color: #ffffff;
+  // color: #ffffff;
   font-size: 10px;
   font-weight: 600;
 `;
 
 export const CartSideBar = styled.div`
   z-index: 1000;
-  width: 350px;
-  background: #ffffff;
+  width: 400px;
+  background: #f2a537;
   top: 0;
   right: 0;
   padding: 25px;
@@ -38,6 +38,7 @@ export const CartSideBar = styled.div`
   height: 100%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   transition: all ease-in-out 0.3s;
+  color: black !important;
 
   &.expand {
     transition: all ease-in-out 0.3s;
@@ -46,7 +47,7 @@ export const CartSideBar = styled.div`
 
   &.shrink {
     transition: all ease-in-out 0.3s;
-    right: -400px;
+    right: -402px;
   }
 `;
 
@@ -84,10 +85,11 @@ export const Card = styled.div`
 
 export const CardImage = styled.img`
   flex: 1;
-  height: auto;
-  width: auto;
-  max-width: 100px;
-  max-height: 100px;
+  height: 5%;
+  width: 25px;
+  max-width: 60px;
+  max-weight: 60px;
+  border-radius: 30px;
 `;
 
 export const CardBody = styled.div`
@@ -99,8 +101,9 @@ export const CardBody = styled.div`
 `;
 
 export const CardTitle = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
+  white-space: nowrap;
 `;
 
 export const CardRemove = styled(FontAwesomeIcon)`
@@ -115,11 +118,12 @@ export const CardRow = styled.div`
   align-items: flex-start;
 `;
 
-export const ClearButton = styled.button`
-  width: 100%;
-  padding: 18px 24px;
-  background: #1a508b;
-  color: #ffffff;
-  cursor: pointer;
-  border: none;
-`;
+// export const ClearButton = styled.button`
+//   width: 50%;
+//   padding: 18px 24px;
+//   background: #9c27b0;
+//   color: #ffffff;
+//   cursor: pointer;
+//   border: none;
+//   font-family: "Varela Round";
+// `;

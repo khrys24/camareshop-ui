@@ -11,8 +11,7 @@ const Products = () => {
   const context = useContext(Context);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/products/list")
+    axios.get(`${process.env.REACT_APP_API_URL}/products/list`)
       .then((response) => {
         setProducts(response.data);
       })
@@ -25,10 +24,21 @@ const Products = () => {
   return (
     <div>
       <MenuBanner />
-      <Grid container={true} spacing={10} sx={{ padding: "100px" }}>
-        {products.map((product) => {
-          return <ProductCard key={product.product_id} data={product} />;
-        })}
+      <Grid
+        container={true}
+        spacing={10}
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          padding: "3%",
+          marginTop: "10px"
+        }}>
+        {
+          products.map((product) => {
+            return <ProductCard key={product.product_id} data={product} />
+          })
+        }
       </Grid>
     </div>
   );
