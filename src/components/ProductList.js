@@ -11,7 +11,7 @@ const ProductList = () => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/products/productList").then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/products/productList`).then((res) => {
       setProductList(res.data);
     });
   }, []);
@@ -32,7 +32,7 @@ const ProductList = () => {
         return;
       }
       axios
-        .delete(`http://localhost:3001/products/${id}`)
+        .delete(`${process.env.REACT_APP_API_URL}/products/${id}`)
         .then((res) => {
           swal("Deleted", res.data.message, "success");
           deleteBtn.closest("tr").remove();

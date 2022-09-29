@@ -16,7 +16,7 @@ const UpdateProducts = () => {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/products/${id}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`).then((res) => {
       setProduct({
         name: res.data[0].name,
         description: res.data[0].description,
@@ -34,7 +34,7 @@ const UpdateProducts = () => {
       /*       image: product.image, */
       price: product.price,
     };
-    axios.post(`http://localhost:3001/products/${id}`, data).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/products/${id}`, data).then((res) => {
       swal("Success!", res.data.message, "success");
     });
     navigate("/productlist");
@@ -125,7 +125,7 @@ const UpdateProducts = () => {
                   />
                 </div>
 
-                <div className="input-group mb-3">
+                <div className="input-group">
                   <input
                     type="submit"
                     value="Update"
@@ -133,7 +133,7 @@ const UpdateProducts = () => {
                     style={{
                       backgroundColor: "#9c27b0",
                       "&:hover": { backgroundColor: "#ce65cc" },
-                      color: "white",
+                      color: "white", marginBottom: "20px"
                     }}
                   />
                 </div>
@@ -145,7 +145,7 @@ const UpdateProducts = () => {
                     style={{
                       backgroundColor: "#9c27b0",
                       "&:hover": { backgroundColor: "#ce65cc" },
-                      color: "white",
+                      color: "white", marginBottom: "20px"
                     }}
                   >
                     Cancel

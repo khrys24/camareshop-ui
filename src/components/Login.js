@@ -35,7 +35,7 @@ const Login = ({ onLogin, details }) => {
       password: user.password,
     };
     axios
-      .post("http://localhost:3001/users/login", data)
+      .post(`${process.env.REACT_APP_API_URL}/users/login`, data)
       .then((res) => {
         localStorage.setItem("User_Details", JSON.stringify(res.data));
         swal("Success", "Logged in successfully", "success");

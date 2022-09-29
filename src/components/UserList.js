@@ -10,7 +10,7 @@ const UserList = () => {
   const [userList, setUserList] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/users").then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/users`).then((res) => {
       setUserList(res.data);
     });
   }, []);
@@ -26,7 +26,7 @@ const UserList = () => {
         return;
       }
       axios
-        .delete(`http://localhost:3001/users/${id}`)
+        .delete(`${process.env.REACT_APP_API_URL}/users/${id}`)
         .then((res) => {
           swal("Deleted", res.data.message, "success");
           deleteBtn.closest("tr").remove();

@@ -17,7 +17,7 @@ const UpdateUser = () => {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/users/${id}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/users/${id}`).then((res) => {
       setUser({
         first_name: res.data[0].first_name,
         last_name: res.data[0].last_name,
@@ -36,7 +36,7 @@ const UpdateUser = () => {
       phone_number: user.phone_number,
       address: user.address,
     };
-    axios.post(`http://localhost:3001/users/${id}`, data).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/users/${id}`, data).then((res) => {
       swal("Success!", res.data.message, "success");
     });
     navigate("/users");
@@ -167,7 +167,7 @@ const UpdateUser = () => {
                     style={{
                       backgroundColor: "#9c27b0",
                       "&:hover": { backgroundColor: "#ce65cc" },
-                      color: "white",
+                      color: "white", marginBottom: "20px"
                     }}
                   >
                     Cancel
