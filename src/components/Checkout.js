@@ -1,37 +1,15 @@
 import React, {useEffect, useState} from 'react';
+
+// eslint-disable-next-line
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
-import { Form, useNavigate  } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import { makeStyles } from '@mui/styles';
 
 import "../css/Checkout.css";
-import { TypographyRoot } from '@mui/material/Typography';
-import Typography from '@mui/material/Typography';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Link from '@mui/material/Link';
-
-import {
-    Wrapper,
-    Icon,
-    CartCount,
-    CartSideBar,
-    EmptyCart,
-    SideBarHeader,
-    Card,
-    CardBody,
-    CardImage,
-    CardTitle,
-    CardRemove,
-    CardRow,
-    ClearButton,
-  } from "./CartStyles";
-  
-
 
 const useStyles = makeStyles({
     input: {
@@ -54,7 +32,7 @@ function Checkout()
     
     const [loading, setLoading] = useState(true);
     const [cart, setCart] = useState([]);
-
+    const [userDetails, setUserDetails] = useState(null);
     const [checkoutInput, setCheckoutInput] = useState({
         firstname: '',
         lastname: '',
@@ -65,32 +43,36 @@ function Checkout()
         state: '',
         zipcode: '',
     });
-    const [error, setError] = useState([]);
 
     useEffect(() => {
+        setUserDetails(JSON.parse(localStorage.getItem("User_Details")));
+    }, [])
+    // const [error, setError] = useState([]);
 
-        let isMounted = true;
+    // useEffect(() => {
 
-        axios.get(`/`).then(res=>{
-            if(isMounted)
-            {
-                if(res.data.status === 200)
-                {
-                    setCart(res.data.cart);
-                    setLoading(false);
-                }
-                else if(res.data.status === 401)
-                {
-                    navigate('/');
-                    swal("Warning",res.data.message,"error");
-                }
-            }
-        }); 
+    //     let isMounted = true;
+
+    //     axios.get(`/`).then(res=>{
+    //         if(isMounted)
+    //         {
+    //             if(res.data.status === 200)
+    //             {
+    //                 setCart(res.data.cart);
+    //                 setLoading(false);
+    //             }
+    //             else if(res.data.status === 401)
+    //             {
+    //                 navigate('/');
+    //                 swal("Warning",res.data.message,"error");
+    //             }
+    //         }
+    //     }); 
  
-        return () => {
-            isMounted = false
-        };
-    }, [useNavigate]);
+    //     return () => {
+    //         isMounted = false
+    //     };
+    // }, [useNavigate]);
 
     const handleInput = (e) => {
         e.persist();
@@ -148,16 +130,52 @@ function Checkout()
 
     const submitOrder = (e) => {
         e.preventDefault();
+        setCheckoutInput({...checkoutInput, [e.target.name]: e.target.value });
+
+        let items = JSON.parse(localStorage.getItem("cartItems"));
+        let total = 0;
+
+        for(let i in items) {
+            items[i]['total'] = items[i].price * items[i].quantity;
+            total += items[i]['total'];
+        }
 
         var data = {
-            firstname: checkoutInput.firstname,
-            lastname: checkoutInput.lastname,
+            user_id: userDetails.user_id,
             phone: checkoutInput.phone,
             email: checkoutInput.email,
             address: checkoutInput.address,
-            city: checkoutInput.city,
+            city: user.city,
             state: checkoutInput.state,
-        }
+            total: total,
+            items: items
+        };
+
+        console.log(data);
+
+        axios
+            .post(`${process.env.REACT_APP_API_URL}/orders/placeorder`, data)
+            .then((res) => {
+                localStorage.removeItem("cartItems");
+            swal("Registration Success!", "You're now Registered", "success");
+                navigate('/login');
+                console.log(res.params);
+            setCheckoutInput({
+                firstname: "",
+                lastname: "",
+                phonenumber: "",
+                address: "",
+                city: "",
+                country: "",
+                email: "",
+                error_list: {},
+        });
+      })
+      .catch((err) => {
+        console.log("error:", err);
+        setUser({ ...user, error_list: err.response.data });
+      });
+       
     }
 
 
@@ -180,9 +198,10 @@ function Checkout()
                                         <label> First Name</label>
                                         <input type="text" name="firstname" 
                                         onChange={handleInput} 
-                                        value={checkoutInput.firstname} 
+                                        value={userDetails ? userDetails.first_name : ''} 
                                         className="form-control" 
-                                        required/>
+                                        required
+                                        aria-readonly/>
                                         <small className="text-danger">
                                             {/* {error.firstname} */}
                                             </small>
@@ -193,9 +212,10 @@ function Checkout()
                                         <label> Last Name</label>
                                         <input type="text" name="lastname" 
                                         onChange={handleInput} 
-                                        value={checkoutInput.lastname} 
+                                        value={userDetails ? userDetails.last_name : ''} 
                                         className="form-control"
-                                        required />
+                                        required 
+                                        aria-readonly/>
                                         <small className="text-danger">
                                             {/* {error.lastname} */}
                                             </small>
@@ -219,9 +239,10 @@ function Checkout()
                                         <label> Email Address</label>
                                         <input type="email" name="email" 
                                         onChange={handleInput} 
-                                        value={checkoutInput.email} 
+                                        value={userDetails ? userDetails.email : ''} 
                                         className="form-control" 
-                                        required/>
+                                        required
+                                        aria-readonly/>
                                         <small className="text-danger">
                                             {/* {error.email} */}
                                             </small>
