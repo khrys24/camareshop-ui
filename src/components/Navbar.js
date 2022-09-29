@@ -33,6 +33,9 @@ const Navbar = ({ user, onLogout }) => {
     ""
   );
 
+  const loggedIn = localStorage.getItem("isLoggedIn");
+  // const isAdmin = JSON.parse(localStorage.getItem("User_Details")).is_admin;
+
   if (user.id || localStorage.getItem("isLoggedIn")) {
     let checkAdmin = JSON.parse(localStorage.getItem("User_Details")).is_admin;
 
@@ -264,7 +267,10 @@ const Navbar = ({ user, onLogout }) => {
               />
             </Link>
 
-            <Button color="inherit">
+            <Button
+              color="inherit"
+              // className={(loggedIn == null || isAdmin == 1) ? "hidden" : ""}
+            >
               <Link
                 // to="/addtocart"
                 component={RouterLink}
@@ -272,12 +278,10 @@ const Navbar = ({ user, onLogout }) => {
                 sx={{ "&:hover": { color: "white" } }}
               >
                 <Cart
-                  isToggle={isToggle}
-                  setToggle={setToggle}
-                  carts={context.carts}
-                  removeProductFromCart={context.removeProductFromCart}
-                  clearCart={context.clearCart}
-                />
+          isToggle={isToggle}
+          setToggle={setToggle}
+          carts={context.carts}
+        />
               </Link>
             </Button>
             {
