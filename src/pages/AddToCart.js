@@ -23,6 +23,7 @@ const AddToCart = (props) => {
     };
 
     const addItem = () => {
+       
         let items = [];
         let index = -1;
 
@@ -47,6 +48,9 @@ const AddToCart = (props) => {
             }, 2000);
         } else {
             swal("Product is already added!", "You can update this item on your shopping cart.", "info");
+            setTimeout(() => {
+                navigate("/products");
+            }, 2000);
         }
     }
 

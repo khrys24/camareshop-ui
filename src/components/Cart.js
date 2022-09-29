@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { faShoppingCart, faTimes } from "@fortawesome/free-solid-svg-icons";
 import swal from "sweetalert";
 
@@ -84,7 +85,7 @@ export default function Cart({
         localStorage.removeItem("cartItems");
       }
     });
-  }
+  };
 
   return (
     <>
@@ -147,7 +148,7 @@ export default function Cart({
           ))
         )}
 
-        { cartItems.length !== 0 && (
+        {cartItems.length !== 0 && (
           <Button
             onClick={() => clearCart()}
             sx={{
@@ -158,12 +159,35 @@ export default function Cart({
               color: "#ffffff",
               cursor: "pointer",
               border: "none",
-              fontFamily: "Varela Round"
+              fontFamily: "Varela Round",
+              margin: "5px",
             }}
           >
               Clear Cart
-          </Button>
+          </Button>         
         )}
+
+      {cartItems.length !== 0 && (
+        <Link to='/checkout'>
+        <Button
+            
+            sx={{
+              width: "50",
+              padding: "18px 24px",
+              backgroundColor: "#9c27b0",
+              "&:hover": { backgroundColor: "#ce65cc" },
+              color: "#ffffff",
+              cursor: "pointer",
+              border: "none",
+              fontFamily: "Varela Round",
+              margin: "5px",
+            }}
+          >
+              Proceed to checkout
+          </Button>      </Link>
+             
+        )}
+
       </CartSideBar>
     </>
   );

@@ -22,6 +22,7 @@ import UpdateProducts from "./components/UpdateProducts";
 import AddProduct from "./components/AddProduct";
 // import ProductCard from "./components/ProductCard";
 import Order from "./pages/Order";
+import Checkout from "./components/Checkout";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/products" element={<Products />}></Route>
           <Route path="/addtocart" element={<AddToCart />}></Route>
           <Route path="/addproduct" element={<AddProduct />}> </Route>
+          <Route path="/checkout" element={<Checkout />}> </Route>
           <Route path="/users">
             <Route
               index
