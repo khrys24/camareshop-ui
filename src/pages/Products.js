@@ -24,16 +24,16 @@ const Products = () => {
   return (
     <div>
       <MenuBanner />
-      <Grid 
-        container={true} 
-        spacing={10} 
-        sx={{ 
+      <Grid
+        container={true}
+        spacing={10}
+        sx={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
           padding: "3%",
           marginTop: "10px"
-          }}>
+        }}>
         {
           products.map((product) => {
             return <ProductCard key={product.product_id} data={product} />
