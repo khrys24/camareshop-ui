@@ -40,7 +40,7 @@ const AddToCart = (props) => {
             items.push({ ...product, quantity: qty });
 
             localStorage.setItem("cartItems", JSON.stringify(items));
-
+            window.dispatchEvent(new Event("storage"));
             swal("Added to Cart!", "Let's get the party started!", "success");
 
             setTimeout(() => {

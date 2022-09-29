@@ -37,6 +37,14 @@ export default function Cart({
     if(items) {
       setCartItems(JSON.parse(items)); 
     }
+
+    window.addEventListener("storage",(function(e){
+      console.log('HEREEEE ============>');
+      let data = localStorage.getItem("cartItems");
+      if(items) {
+        setCartItems(JSON.parse(data)); 
+      }
+    }).bind(this));
   }, [])
   
 
