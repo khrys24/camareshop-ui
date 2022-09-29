@@ -17,7 +17,7 @@ h5 {
 .large--banner--photo {
   width: 100%;
   object-fit: contain;
-  background-image: url(../public/images/banner_photo_4.png);
+  background-image: url(../src/banner_photo_4.png);
   height: 900px;
   background-attachment: fixed;
   background-position: center;
