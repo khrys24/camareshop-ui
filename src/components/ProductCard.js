@@ -5,27 +5,42 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import swal from "sweetalert";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = (props) => {
-    const imageUrl = "http://localhost:3001/images/";
+    // const imageUrl = "http://localhost:3001/images/";
 
     const navigate = useNavigate();
 
     const goToItem = () => {
-        localStorage.setItem("selectedProduct", JSON.stringify(props.data));
-        navigate("/addtocart");
+        const loggedIn = localStorage.getItem("isLoggedIn");
+
+        if(loggedIn == null) {
+            swal("Please login first to order.", "", "info");
+            navigate("/login");
+        } else {
+            localStorage.setItem("selectedProduct", JSON.stringify(props.data));
+            navigate("/addtocart");
+        }
     }
 
     return (
-        <Grid item lg={4} md={4} xs={12}>
+        <Grid item xl={4} lg={4} md={6} xs={9}
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center", 
+                alignContent: "center"
+            }}
+        >
             <Card
                 sx={{
                     boxShadow: "none",
                     border: "none",
                     display: "flex",
-                    flexDirection: "column",
+                    flexDirection: "column"
                 }}
                 className="featured"
                 >
@@ -34,8 +49,8 @@ const ProductCard = (props) => {
                     component="img"
                     alt={props.data.name}
                     height="375"
-                    image={imageUrl + props.data.image}
-                    sx={{ objectFit: "cover" }}
+                    image={process.env.REACT_APP_IMAGE_URL + '/' + props.data.image}
+                    sx={{ objectFit: "inherit" }}
                 />
                 <CardContent>
                     <Typography
