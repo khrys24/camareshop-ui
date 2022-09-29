@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Button, Typography } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 const ProductList = () => {
   const [productList, setProductList] = useState([]);
@@ -19,10 +19,15 @@ const ProductList = () => {
   const deleteProduct = (e, id) => {
     e.preventDefault();
     const deleteBtn = e.target;
-    swal("Warning!", "Are you sure?", "warning", {
-      dangerMode: true,
-      buttons: true,
-    }).then((confirm) => {
+    swal(
+      "Warning!",
+      "Are you sure you want to delete this product?",
+      "warning",
+      {
+        dangerMode: true,
+        buttons: true,
+      }
+    ).then((confirm) => {
       if (!confirm) {
         return;
       }
@@ -68,28 +73,46 @@ const ProductList = () => {
   });
 
   return (
-    <div style={{ margin: "auto auto 500px auto", width:"80%" }}>
-      <Typography variant="h2"
-                sx={{
-                    marginTop: "100px",
-                    marginBottom: "40px",
-                    color: "#ce65cc",
-                    fontWeight: "bold",
-                    fontFamily: "Varela Round"
-                }}
-            >
-                Product List
-            </Typography>
-      <div style={{display:"flex", justifyContent:"flex-end", marginBottom:"10px"}} >
-        <Link to="/addproduct" style={{textDecoration:"none"}}>
-          <Button variant="contained" size="large" sx={{ backgroundColor: "#ce65cc", "&:hover": { backgroundColor: "#ce65cc" } }}>
-            <AddIcon/>Add Product
+    <div
+      style={{ margin: "auto auto 500px auto", width: "80%" }}
+      className="product-table"
+    >
+      <Typography
+        variant="h2"
+        sx={{
+          marginTop: "100px",
+          marginBottom: "40px",
+          color: "#ce65cc",
+          fontWeight: "bold",
+          fontFamily: "Varela Round",
+        }}
+      >
+        Product List
+      </Typography>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "10px",
+        }}
+      >
+        <Link to="/addproduct" style={{ textDecoration: "none" }}>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: "#ce65cc",
+              "&:hover": { backgroundColor: "#ce65cc" },
+            }}
+          >
+            <AddIcon />
+            Add Product
           </Button>
         </Link>
       </div>
       <table className="table" style={{ textAlign: "left" }}>
         <thead>
-          <tr  style={{backgroundColor:"#f2a537", color:"white"}}>
+          <tr style={{ backgroundColor: "#f2a537", color: "white" }}>
             <th>Product ID</th>
             <th>Name</th>
             <th>Description</th>
@@ -104,7 +127,6 @@ const ProductList = () => {
         </thead>
         <tbody>{renderedProducts}</tbody>
       </table>
-      
     </div>
   );
 };

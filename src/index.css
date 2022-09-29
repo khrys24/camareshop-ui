@@ -1,13 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
 body {
   margin: 0;
-  font-family: 'Varela Round', sans-serif;
+  font-family: "Varela Round", sans-serif;
   background-color: whitesmoke;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: 'Varela Round', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Varela Round", sans-serif;
 }
 
 .large--banner--photo {
@@ -19,4 +23,26 @@ h1, h2, h3, h4, h5 {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.logout-menu {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .logout {
+    display: none;
+  }
+  .logout-menu {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .user-table {
+    overflow-x: scroll;
+  }
+  .product-table {
+    overflow-x: scroll;
+  }
 }
