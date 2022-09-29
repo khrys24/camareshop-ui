@@ -13,7 +13,7 @@ export default function GlobalState(props) {
   const [state, dispatch] = useReducer(Reducer, { carts: [] });
 
   // # add product to cart
-  const addProductToCart = (product) => {
+  const addItem = (product) => {
     dispatch({
       type: ADD_TO_CART,
       payload: product,
@@ -39,7 +39,7 @@ export default function GlobalState(props) {
     <Context.Provider
       value={{
         products: products,
-        addProductToCart: addProductToCart,
+        addItem: addProductToCart,
         removeProductFromCart: removeProductFromCart,
         clearCart: clearCart,
         carts: state.carts,

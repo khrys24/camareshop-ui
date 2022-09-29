@@ -1,15 +1,15 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_ALL_FROM_CART } from "./types";
 
-const addProductToCart = (state, product) => {
+const addItem = (state, product) => {
   const copy = [...state.carts];
-  const curItemIndex = copy.findIndex((i) => i.product.id === product.id);
+  const curItemIndex = copy.findIndex((i) => i.product.product_id === product.product_id);
 
   if (curItemIndex < 0) {
-    copy.push({ product, quantity: 1 });
+    copy.push({ product, qty: 1 });
   } else {
     const copyItem = { ...copy[curItemIndex] };
-    copyItem.quantity++;
+    copyItem.qty++;
     copy[curItemIndex] = copyItem;
   }
 
@@ -43,7 +43,7 @@ const clearCart = (state) => {
 export default (state, action) => {
   switch (action.type) {
     case ADD_TO_CART:
-      return addProductToCart(state, action.payload);
+      return addItem(state, action.payload);
     case REMOVE_FROM_CART:
       return removeProductFromCart(state, action.payload);
     case CLEAR_ALL_FROM_CART:

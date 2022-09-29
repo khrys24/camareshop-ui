@@ -36,7 +36,10 @@ const Products = () => {
         }}>
         {
           products.map((product) => {
-            return <ProductCard key={product.product_id} data={product} />
+            return <ProductCard 
+            key={product.product_id} 
+            data={product} 
+            addItem={context.addItem}/>
           })
         }
       </Grid>
