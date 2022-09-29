@@ -1,9 +1,9 @@
 import { createContext } from "react";
 
 export default createContext({
-  products: [],
+  product: [],
   carts: [],
-  addProductToCart: (product) => {},
-  removeProductFromCart: (productID) => {},
+  addItem: (product) => {},
+  removeProductFromCart: (product_id) => {},
   clearCart: () => {},
 });

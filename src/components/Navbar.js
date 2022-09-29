@@ -343,16 +343,17 @@ const Navbar = ({ user, onLogout }) => {
               // className={(loggedIn == null || isAdmin == 1) ? "hidden" : ""}
             >
               <Link
-                // to="/addtocart"
+                // to="/cart"
                 component={RouterLink}
                 color="inherit"
                 sx={{ "&:hover": { color: "white" } }}
               >
                 <Cart
-                  isToggle={isToggle}
-                  setToggle={setToggle}
-                  carts={context.carts}
-                />
+                
+              isToggle={isToggle}
+              setToggle={setToggle}
+              carts={context.carts}
+        />
               </Link>
             </Button>
             {
