@@ -38,10 +38,10 @@ const Navbar = ({ user, onLogout }) => {
   // const isAdmin = JSON.parse(localStorage.getItem("User_Details")).is_admin;
 
   if (user.id || localStorage.getItem("isLoggedIn")) {
-    let checkAdmin = JSON.parse(localStorage.getItem("User_Details")).is_admin;
+    let checkAdmin = JSON.parse(localStorage.getItem("User_Details"));
 
     userList =
-      checkAdmin === 1 ? (
+      checkAdmin.is_admin == 1 ? (
         <Link
           to="/users"
           component={RouterLink}
@@ -55,6 +55,20 @@ const Navbar = ({ user, onLogout }) => {
         ""
       );
   }
+
+  const orderList = loggedIn === "true" ? (
+    <Link
+      sx={{ "&:hover": { color: "inherit" } }}
+      to="/orderlist"
+      component={RouterLink}
+      color="inherit"
+      underline="none"
+    >
+      ORDERS
+    </Link>
+   ) : (
+    ""
+   );
 
   let productList = user.is_admin ? (
     <Link
@@ -248,15 +262,7 @@ const Navbar = ({ user, onLogout }) => {
                 >
                   MENU
                 </Link>
-                <Link
-                  sx={{ "&:hover": { color: "inherit" } }}
-                  to="/orderlist"
-                  component={RouterLink}
-                  color="inherit"
-                  underline="none"
-                >
-                  ORDERS
-                </Link>
+                {orderList}
                 <Link
                   sx={{ "&:hover": { color: "inherit" } }}
                   to="/contact"
