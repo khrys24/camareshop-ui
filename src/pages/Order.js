@@ -13,11 +13,12 @@ import {
   Typography,
   TextField,
   MenuItem,
-  Modal,
   Button,
   Box,
   Grid,
 } from "@mui/material";
+import "react-responsive-modal/styles.css";
+import { Modal } from 'react-responsive-modal';
 // import { minHeight } from '@mui/system';
 
 const Order = () => {
@@ -32,16 +33,16 @@ const Order = () => {
   }, []);
 
   const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    // position: "absolute",
+    // top: "50%",
+    // left: "50%",
+    // transform: "translate(-50%, -50%)",
     width: 500,
-    bgcolor: "background.paper",
-    border: "2px solid #9c27b0",
+    // bgcolor: "background.paper",
+    // border: "2px solid #9c27b0",
     boxShadow: 24,
-    p: 4,
-    padding: "0px",
+    // p: 4,
+    // padding: "0px",
   };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({

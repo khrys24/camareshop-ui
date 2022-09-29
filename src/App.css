@@ -40,3 +40,8 @@
 .hidden {
   display: none;
 }
+
+
+.react-responsive-modal-modal{
+  padding: 0px !important;
+}
