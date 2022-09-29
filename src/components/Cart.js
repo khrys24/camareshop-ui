@@ -169,6 +169,8 @@ export default function Cart({
               border: "none",
               fontFamily: "Varela Round",
               margin: "5px",
+              marginTop: "10px",
+              lineHeight: "0.3"
             }}
           >
               Clear Cart
@@ -189,6 +191,7 @@ export default function Cart({
               border: "none",
               fontFamily: "Varela Round",
               margin: "5px",
+              lineHeight: "0.3"
             }}
           >
               Proceed to checkout

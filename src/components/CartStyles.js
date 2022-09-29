@@ -80,16 +80,15 @@ export const SideBarHeader = styled.div`
 export const Card = styled.div`
   display: flex;
   position: relative;
-  margin: 35px 0 75px 0;
+  margin: 20px 0px 19px;
 `;
 
 export const CardImage = styled.img`
-  flex: 1;
-  height: 5%;
-  width: 25px;
-  max-width: 60px;
-  max-weight: 60px;
-  border-radius: 30px;
+  flex: 1 1 0%;
+  height: 65px;
+  width: 65px;
+  max-width: 65px;
+  border-radius: 36px;
 `;
 
 export const CardBody = styled.div`
