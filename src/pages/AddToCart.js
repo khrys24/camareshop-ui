@@ -63,7 +63,7 @@ const AddToCart = (props) => {
                         component="img"
                         alt={product.name}
                         height="500"
-                        image={imageUrl + product.image}
+                        image={`${process.env.REACT_APP_IMAGE_URL}${product.image}`}
                         sx={{ objectFit: "cover" }}
                     />
                 </Card>
