@@ -32,7 +32,7 @@ const AddProduct = () => {
     }
 
     axios
-      .post("http://localhost:3001/products/addproduct", formData)
+      .post(`${process.env.REACT_APP_API_URL}/products/addproduct`, formData)
       .then((res) => {
         swal("Success", "Added product successfully", "success");
         setProduct({

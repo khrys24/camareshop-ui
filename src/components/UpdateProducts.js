@@ -16,7 +16,7 @@ const UpdateProducts = () => {
   });
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/products/${id}`).then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`).then((res) => {
       setProduct({
         name: res.data[0].name,
         description: res.data[0].description,
@@ -34,7 +34,7 @@ const UpdateProducts = () => {
       /*       image: product.image, */
       price: product.price,
     };
-    axios.post(`http://localhost:3001/products/${id}`, data).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/products/${id}`, data).then((res) => {
       swal("Success!", res.data.message, "success");
     });
     navigate("/productlist");
