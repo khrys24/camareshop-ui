@@ -167,7 +167,7 @@ const UpdateUser = () => {
                     style={{
                       backgroundColor: "#9c27b0",
                       "&:hover": { backgroundColor: "#ce65cc" },
-                      color: "white",
+                      color: "white", marginBottom: "20px"
                     }}
                   >
                     Cancel

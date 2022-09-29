@@ -125,7 +125,7 @@ const UpdateProducts = () => {
                   />
                 </div>
 
-                <div className="input-group mb-3">
+                <div className="input-group">
                   <input
                     type="submit"
                     value="Update"
@@ -133,7 +133,7 @@ const UpdateProducts = () => {
                     style={{
                       backgroundColor: "#9c27b0",
                       "&:hover": { backgroundColor: "#ce65cc" },
-                      color: "white",
+                      color: "white", marginBottom: "20px"
                     }}
                   />
                 </div>
@@ -145,7 +145,7 @@ const UpdateProducts = () => {
                     style={{
                       backgroundColor: "#9c27b0",
                       "&:hover": { backgroundColor: "#ce65cc" },
-                      color: "white",
+                      color: "white", marginBottom: "20px"
                     }}
                   >
                     Cancel
