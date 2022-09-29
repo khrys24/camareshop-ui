@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import { AppBar, Toolbar, Button, Box, Drawer } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
@@ -8,16 +8,17 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Context from "./store/Context";
 import Cart from "./Cart";
+import { lineHeight } from "@mui/system";
 
 const Navbar = ({ user, onLogout }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  /*   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
-  };
+  }; */
 
   let userList = user.is_admin ? (
     <Link
@@ -27,7 +28,7 @@ const Navbar = ({ user, onLogout }) => {
       underline="none"
       sx={{ "&:hover": { color: "inherit" } }}
     >
-      <MenuItem onClick={handleClose}>User List</MenuItem>
+      USER LIST
     </Link>
   ) : (
     ""
@@ -48,7 +49,7 @@ const Navbar = ({ user, onLogout }) => {
           underline="none"
           sx={{ "&:hover": { color: "inherit" } }}
         >
-          <MenuItem onClick={handleClose}>User List</MenuItem>
+          USER LIST
         </Link>
       ) : (
         ""
@@ -63,7 +64,7 @@ const Navbar = ({ user, onLogout }) => {
       underline="none"
       sx={{ "&:hover": { color: "inherit" } }}
     >
-      <MenuItem onClick={handleClose}>Product List</MenuItem>
+      PRODUCT LIST
     </Link>
   ) : (
     ""
@@ -81,7 +82,7 @@ const Navbar = ({ user, onLogout }) => {
           underline="none"
           sx={{ "&:hover": { color: "inherit" } }}
         >
-          <MenuItem onClick={handleClose}>Product List</MenuItem>
+          PRODUCT LIST
         </Link>
       ) : (
         ""
@@ -132,7 +133,7 @@ const Navbar = ({ user, onLogout }) => {
               textTransform: "capitalize",
             }}
           >
-            Logout
+            LOGOUT
           </li>
         </ul>
       </div>
@@ -140,8 +141,25 @@ const Navbar = ({ user, onLogout }) => {
   }
 
   let logoutMenu = (
-    <div className="logout-menu">
-      <MenuItem
+    <div
+      className="logout-menu"
+      onClick={() => {
+        onLogout({});
+        localStorage.removeItem("email");
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("User_Details");
+        localStorage.removeItem("cartItems");
+        localStorage.removeItem("selectedProduct");
+      }}
+    >
+      LOGOUT
+    </div>
+  );
+
+  if (!JSON.parse(localStorage.getItem("isLoggedIn"))) {
+    logoutMenu = (
+      <div
+        className="logout-menu d-none"
         onClick={() => {
           onLogout({});
           localStorage.removeItem("email");
@@ -151,32 +169,15 @@ const Navbar = ({ user, onLogout }) => {
           localStorage.removeItem("selectedProduct");
         }}
       >
-        Logout
-      </MenuItem>
-    </div>
-  );
-
-  if (!JSON.parse(localStorage.getItem("isLoggedIn"))) {
-    logoutMenu = (
-      <div className="logout-menu d-none">
-        <MenuItem
-          onClick={() => {
-            onLogout({});
-            localStorage.removeItem("email");
-            localStorage.removeItem("isLoggedIn");
-            localStorage.removeItem("User_Details");
-            localStorage.removeItem("cartItems");
-            localStorage.removeItem("selectedProduct");
-          }}
-        >
-          Logout
-        </MenuItem>
+        LOGOUT
       </div>
     );
   }
 
   const [isToggle, setToggle] = useState(false);
   const context = useContext(Context);
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
     <div>
@@ -194,15 +195,85 @@ const Navbar = ({ user, onLogout }) => {
           <Toolbar>
             <Button
               id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
+              /*               aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
+              aria-expanded={open ? "true" : undefined} */
+              onClick={() => setIsDrawerOpen(true)}
+              edge="start"
               color="inherit"
             >
               <MenuIcon />
             </Button>
-            <Menu
+
+            <Drawer
+              anchor="left"
+              open={isDrawerOpen}
+              onClose={() => setIsDrawerOpen(false)}
+              PaperProps={{
+                sx: { backgroundColor: "#9c27b0", color: "white" },
+              }}
+            >
+              <Box
+                p={2}
+                width="250px"
+                textAlign="center"
+                role="presentation"
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  lineHeight: "4rem",
+                }}
+              >
+                <img
+                src="./images/camare_cakes_logo_4.svg"
+                alt="Camare Cakes"
+                style={{ height: "70px", margin: "20px auto", }}
+              />
+                <Link
+                  sx={{ "&:hover": { color: "inherit" } }}
+                  to="/about"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  ABOUT
+                </Link>
+                <Link
+                  sx={{ "&:hover": { color: "inherit" } }}
+                  to="/products"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  MENU
+                </Link>
+                <Link
+                  sx={{ "&:hover": { color: "inherit" } }}
+                  to="/orderlist"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  ORDERS
+                </Link>
+                <Link
+                  sx={{ "&:hover": { color: "inherit" } }}
+                  to="/contact"
+                  component={RouterLink}
+                  color="inherit"
+                  underline="none"
+                >
+                  CONTACT
+                </Link>
+                {userList}
+                {productList}
+                {logoutMenu}
+              </Box>
+            </Drawer>
+
+            {/* old nav */}
+            {/*             <Menu
               id="basic-menu"
               anchorEl={anchorEl}
               open={open}
@@ -251,7 +322,7 @@ const Navbar = ({ user, onLogout }) => {
               {userList}
               {productList}
               {logoutMenu}
-            </Menu>
+            </Menu> */}
 
             <Link
               to="/"
@@ -278,10 +349,10 @@ const Navbar = ({ user, onLogout }) => {
                 sx={{ "&:hover": { color: "white" } }}
               >
                 <Cart
-          isToggle={isToggle}
-          setToggle={setToggle}
-          carts={context.carts}
-        />
+                  isToggle={isToggle}
+                  setToggle={setToggle}
+                  carts={context.carts}
+                />
               </Link>
             </Button>
             {
