@@ -18,7 +18,7 @@ const UserList = () => {
   const deleteUser = (e, id) => {
     e.preventDefault();
     const deleteBtn = e.target;
-    swal("Warning!", "Are you sure?", "warning", {
+    swal("Warning!", "Are you sure you want to delete this user?", "warning", {
       dangerMode: true,
       buttons: true,
     }).then((confirm) => {
@@ -68,21 +68,25 @@ const UserList = () => {
   });
 
   return (
-    <div style={{ margin: "auto auto 500px auto", width:"80%" }}>
-      <Typography variant="h2"
-                sx={{
-                    marginTop: "100px",
-                    marginBottom: "40px",
-                    color: "#ce65cc",
-                    fontWeight: "bold",
-                    fontFamily: "Varela Round"
-                }}
-            >
-                User List
-            </Typography>
+    <div
+      style={{ margin: "auto auto 500px auto", width: "80%" }}
+      className="user-table"
+    >
+      <Typography
+        variant="h2"
+        sx={{
+          marginTop: "100px",
+          marginBottom: "40px",
+          color: "#ce65cc",
+          fontWeight: "bold",
+          fontFamily: "Varela Round",
+        }}
+      >
+        User List
+      </Typography>
       <table className="table" style={{ textAlign: "left" }}>
         <thead>
-          <tr  style={{backgroundColor:"#f2a537", color:"white"}}>
+          <tr style={{ backgroundColor: "#f2a537", color: "white" }}>
             <th>User ID</th>
             <th>First Name</th>
             <th>Last Name</th>

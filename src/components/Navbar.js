@@ -97,7 +97,7 @@ const Navbar = ({ user, onLogout }) => {
     let userName = JSON.parse(localStorage.getItem("User_Details")).first_name;
 
     btn = (
-      <div className="dropdown" style={{ height: "40px" }}>
+      <div className="dropdown logout" style={{ height: "40px" }}>
         <button
           className="btn text-decoration-none dropdown-toggle"
           type="button"
@@ -132,6 +132,42 @@ const Navbar = ({ user, onLogout }) => {
             Logout
           </li>
         </ul>
+      </div>
+    );
+  }
+
+  let logoutMenu = (
+    <div className="logout-menu">
+      <MenuItem
+        onClick={() => {
+          onLogout({});
+          localStorage.removeItem("email");
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("User_Details");
+          localStorage.removeItem("cartItems");
+          localStorage.removeItem("selectedProduct");
+        }}
+      >
+        Logout
+      </MenuItem>
+    </div>
+  );
+
+  if (!JSON.parse(localStorage.getItem("isLoggedIn"))) {
+    logoutMenu = (
+      <div className="logout-menu d-none">
+        <MenuItem
+          onClick={() => {
+            onLogout({});
+            localStorage.removeItem("email");
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("User_Details");
+            localStorage.removeItem("cartItems");
+            localStorage.removeItem("selectedProduct");
+          }}
+        >
+          Logout
+        </MenuItem>
       </div>
     );
   }
@@ -211,6 +247,7 @@ const Navbar = ({ user, onLogout }) => {
               </Link>
               {userList}
               {productList}
+              {logoutMenu}
             </Menu>
 
             <Link
