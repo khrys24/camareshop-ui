@@ -176,10 +176,11 @@ export default function Cart({
         )}
 
       {cartItems.length !== 0 && (
-        <Link to='/checkout'>
+        <Link to='/checkout' style={{ textDecoration: 'none' }} onClick={() => setToggle(false)} >
         <Button
             
             sx={{
+              
               width: "50",
               padding: "18px 24px",
               backgroundColor: "#9c27b0",
@@ -191,9 +192,11 @@ export default function Cart({
               margin: "5px",
               lineHeight: "0.3"
             }}
+            
           >
               Proceed to checkout
-          </Button>      </Link>
+          </Button>      
+          </Link>
              
         )}
 
