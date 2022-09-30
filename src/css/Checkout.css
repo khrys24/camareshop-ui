@@ -25,7 +25,11 @@
 }
 
 .tableHead .totalCartPrice {
-    background-color: #9c27b0;
-    color: white
-    ;
+    /* background-color: #ce65cc; */
+    color: black;
+    font-size: 20px;
+}
+
+.orders {
+    font-size: 15px;
 }
