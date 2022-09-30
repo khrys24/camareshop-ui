@@ -5,19 +5,19 @@ import swal from 'sweetalert';
 import { useNavigate  } from 'react-router-dom';
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import { makeStyles } from '@mui/styles';
+// import { makeStyles } from '@mui/styles';
 
 import "../css/Checkout.css";
 
-const useStyles = makeStyles({
-    input: {
-      width: "98%",
-      height: "150px",
-      border: "1px solid #9c27b0",
+// const useStyles = makeStyles({
+//     input: {
+//       width: "98%",
+//       height: "150px",
+//       border: "1px solid #9c27b0",
       
       
-    },
-  });
+//     },
+//   });
   
   
 function Checkout()
@@ -54,7 +54,7 @@ function Checkout()
 
   
     const getCities = async () => {
-        const { data } = await axios.get("http://localhost:3001/users/cities");
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/users/cities`);
         console.log("cities: ", data);
         setCities(data);
       };
@@ -85,7 +85,7 @@ function Checkout()
       };
     
       
-    const classes = useStyles();
+    // const classes = useStyles();
 
     const [cartItems, setCartItems] = useState([]);
     var totalCartPrice = 0;
