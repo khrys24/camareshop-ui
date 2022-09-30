@@ -50,7 +50,8 @@ const ProductCard = (props) => {
                     alt={props.data.name}
                     height="375"
                     image={process.env.REACT_APP_IMAGE_URL + '/' + props.data.image}
-                    sx={{ objectFit: "inherit" }}
+                    sx={{ objectFit: "cover" }}
+                    onClick={goToItem}
                 />
                 <CardContent>
                     <Typography
@@ -80,13 +81,13 @@ const ProductCard = (props) => {
                     }}
                 >
                     <Button
-                        variant="text"
+                        variant="contained"
                         size="large"
                         color="secondary"
-                        sx={{ color: "#ce65cc", fontFamily: "Varela Round" }}
+                        sx={{ color: "white", fontFamily: "Varela Round", fontSize: "12px" }}
                         onClick={goToItem}
                     >
-                        Buy
+                        BUY
                     </Button>
                 </CardActions>
             </Card>

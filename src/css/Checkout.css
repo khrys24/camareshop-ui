@@ -1,10 +1,31 @@
-
 .checkout {
     padding: 50px;
-    margin-top: 100px;
-    padding-top: 60px;
+    margin-top: 50px;
+    padding-top: 50px;
 }
-
+/* 
 .totalPrice {
     padding-right: "10px";
+} */
+
+.inputCheckout {
+    text-transform: uppercase;
+}
+
+.inputShip {
+    height: 100px;
+}
+
+.tableTitle {
+    font-size: 24px;
+}
+
+.tableHead {
+    font-size: 15px;
+}
+
+.tableHead .totalCartPrice {
+    background-color: #9c27b0;
+    color: white
+    ;
 }

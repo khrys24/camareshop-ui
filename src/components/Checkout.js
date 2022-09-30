@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
-
-// eslint-disable-next-line
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
 import { useNavigate  } from 'react-router-dom';
@@ -13,9 +11,10 @@ import "../css/Checkout.css";
 
 const useStyles = makeStyles({
     input: {
-      width: "100%",
-      height: 150,
+      width: "98%",
+      height: "150px",
       border: "1px solid #9c27b0",
+      
       
     },
   });
@@ -26,12 +25,12 @@ function Checkout()
 
     const navigate = useNavigate ();
     if(!localStorage.getItem('cartItems')){
-        navigate('/cart');
-        swal("Warning","Login to goto Cart Page","error");
+        navigate('/products');
+        swal("Warning","Empty Cart","error");
     }
     
-    const [loading, setLoading] = useState(true);
-    const [cart, setCart] = useState([]);
+    // const [loading, setLoading] = useState(true);
+    // const [cart, setCart] = useState([]);
     const [userDetails, setUserDetails] = useState(null);
     const [checkoutInput, setCheckoutInput] = useState({
         firstname: '',
@@ -47,32 +46,6 @@ function Checkout()
     useEffect(() => {
         setUserDetails(JSON.parse(localStorage.getItem("User_Details")));
     }, [])
-    // const [error, setError] = useState([]);
-
-    // useEffect(() => {
-
-    //     let isMounted = true;
-
-    //     axios.get(`/`).then(res=>{
-    //         if(isMounted)
-    //         {
-    //             if(res.data.status === 200)
-    //             {
-    //                 setCart(res.data.cart);
-    //                 setLoading(false);
-    //             }
-    //             else if(res.data.status === 401)
-    //             {
-    //                 navigate('/');
-    //                 swal("Warning",res.data.message,"error");
-    //             }
-    //         }
-    //     }); 
- 
-    //     return () => {
-    //         isMounted = false
-    //     };
-    // }, [useNavigate]);
 
     const handleInput = (e) => {
         e.persist();
@@ -157,8 +130,8 @@ function Checkout()
             .post(`${process.env.REACT_APP_API_URL}/orders/placeorder`, data)
             .then((res) => {
                 localStorage.removeItem("cartItems");
-            swal("Registration Success!", "You're now Registered", "success");
-                navigate('/login');
+            swal("Order Submitted!", "Thank you for ordering!", "success");
+                navigate('/');
                 console.log(res.params);
             setCheckoutInput({
                 firstname: "",
@@ -195,11 +168,11 @@ function Checkout()
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group mb-3">
-                                        <label> First Name</label>
+                                        <label > First Name</label>
                                         <input type="text" name="firstname" 
                                         onChange={handleInput} 
                                         value={userDetails ? userDetails.first_name : ''} 
-                                        className="form-control" 
+                                        className="form-control inputCheckout" 
                                         required
                                         aria-readonly/>
                                         <small className="text-danger">
@@ -213,7 +186,7 @@ function Checkout()
                                         <input type="text" name="lastname" 
                                         onChange={handleInput} 
                                         value={userDetails ? userDetails.last_name : ''} 
-                                        className="form-control"
+                                        className="form-control inputCheckout"
                                         required 
                                         aria-readonly/>
                                         <small className="text-danger">
@@ -223,7 +196,7 @@ function Checkout()
                                 </div>
                                 <div className="col-md-6">
                                     <div className="form-group mb-3">
-                                        <label> Phone Number</label>
+                                        <label> Phone Number*</label>
                                         <input type="text" name="phone" 
                                         onChange={handleInput} 
                                         value={checkoutInput.phone} 
@@ -236,7 +209,7 @@ function Checkout()
                                 </div>
                                 <div className="col-md-6">
                                     <div className="form-group mb-3">
-                                        <label> Email Address</label>
+                                        <label>Email Address</label>
                                         <input type="email" name="email" 
                                         onChange={handleInput} 
                                         value={userDetails ? userDetails.email : ''} 
@@ -250,11 +223,11 @@ function Checkout()
                                 </div>
                                 <div className="col-md-12">
                                     <div className="form-group mb-3">
-                                        <label style={{ fontSize: "18px" }}>Shipping Address</label>
-                                        <textarea rows="3" name="address" 
+                                        <label style={{ fontSize: "18px" }}>Shipping Address*</label>
+                                        <textarea rows="1" name="address" 
                                         onChange={handleInput} 
                                         value={checkoutInput.address} 
-                                        className="form-control"
+                                        className="form-control inputShip"
                                         required></textarea>
                                         <small className="text-danger">
                                             {/* {error.address} */}
@@ -263,26 +236,25 @@ function Checkout()
                                 </div>
 
                                 <TextField 
-                                    className={`form-control ${user.error_list.city_id ? "is-invalid" : ""
-                                    } `}
+                                    className={`form-control `}
                                     id="dropdownCity"
                                     select
                                     label="City"
                                     value={user.city}
                                     name="city"
                                     required
-                                    InputProps={{
-                                        className: classes.input,
-                                      }}
-                                  
+                                    fullWidth
+                                    // InputProps={{
+                                    //     className: classes.input,
+                                    //   }}
                                     onChange={(e) => onInputChange(e, "city")}
-                                    // onChange={handleInput}
+                                 
                                     sx={{
-                                        mb: 3,
+                                        mb: 1,
                                         mx: 1,
                                         mt: 2 ,
-                                        width: { md: 530 },
-                                        
+                                        width: "98%",
+                                        textAlign: "left",
                                         height: "60px"
                                     }}
                                 >
@@ -294,7 +266,7 @@ function Checkout()
                                 </TextField>
                                 
                                 
-                                <div className="col-md-6">
+                                <div className="col-md-12">
                                     <div className="form-group mb-3">
                                         <label>Country</label>
                                         <input type="text" name="state" 
@@ -303,7 +275,7 @@ function Checkout()
                                         sx={{
                                             width: "100%"
                                         }}
-                                        className="form-control" disabled/>
+                                        className="form-control" aria-readonly/>
                                         <small className="text-danger">
                                             {/* {error.state} */}
                                             </small>
@@ -331,10 +303,10 @@ function Checkout()
                 <table className="table table-bordered">
                     <thead>
                         <tr>
-                            <th colSpan={4}>YOUR ORDERS</th>
+                            <th colSpan={4} className="tableTitle">YOUR ORDERS</th>
                         </tr>
                     </thead>
-                    <thead>
+                    <thead className='tableHead'>
                         <tr>
                             <th width="50%">Product</th>
                             <th>Price</th>
@@ -356,22 +328,19 @@ function Checkout()
                                 </tr>
                             )
                         })}
-                        <tr>
+                        <tr className='tableHead'>
                             <td colSpan="2" className="text-end fw-bold">Sub Total</td>
                             <td className="text-center fw-bold ">{totalQty}</td>
-                            <td className="text-center fw-bold ">₱{totalCartPrice}</td>
+                            <td className="text-center fw-bold totalCartPrice">₱{totalCartPrice}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-
-
             </div>
         </div>
     )
 }
-
 
 
 export default Checkout;
