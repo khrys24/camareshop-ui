@@ -5,6 +5,9 @@ import swal from 'sweetalert';
 import { useNavigate  } from 'react-router-dom';
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
+import { Button } from '@mui/material';
+
+
 // import { makeStyles } from '@mui/styles';
 
 import "../css/Checkout.css";
@@ -281,15 +284,40 @@ function Checkout()
                                             </small>
                                     </div>
                                 </div>
-                                                            
-                                <div className="col-md-12">
+
+                                <Button
+                                    variant="contained"
+                                    size="large"
+                                    color="secondary"
+                                    type="submit"
+                                    sx={{
+                                        color: "white",
+                                        fontFamily: "Varela Round",
+                                        display: "flex",
+                                        // alignItem: "flex-end",
+                                        height: "40px",
+                                        whiteSpace: "nowrap",
+                                        width: "160px",
+                                        "&:hover": { backgroundColor: "#ce65cc" },
+                                        marginLeft: "auto",
+                                        marginRight: "10px"
+                                        
+                                    }}
+                                >Place Order
+                                    </Button>
+                                
+                                {/* <div className="col-md-12">
                                     <div className="form-group text-end">
-                                        <button type="submit" className="btn btn-primary mx-1" 
+                                        <button type="submit" className="btn mx-1" style={{
+                                            whiteSpace: "nowrap",
+                                            width: "160px",
+                                            "&:hover": { backgroundColor: "#ce65cc" },
+                                        }}
                                         // onClick={ (e) => submitOrder() }
                                         >Place Order</button>
                                        
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                                                             
                             </div>
@@ -320,7 +348,7 @@ function Checkout()
                             totalQty += (parseInt(cartItem.quantity));
                             
                             return (
-                                <tr key={index}>
+                                <tr key={index} className='orders'>
                                     <td>{cartItem.name}</td>
                                     <td>₱{cartItem.price}</td>
                                     <td>{cartItem.quantity}</td>

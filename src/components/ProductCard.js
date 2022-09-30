@@ -84,7 +84,7 @@ const ProductCard = (props) => {
                         variant="contained"
                         size="large"
                         color="secondary"
-                        sx={{ color: "white", fontFamily: "Varela Round", fontSize: "12px" }}
+                        sx={{ color: "white", fontFamily: "Varela Round", fontSize: "12px","&:hover": { backgroundColor: "#ce65cc" }, }}
                         onClick={goToItem}
                     >
                         BUY
