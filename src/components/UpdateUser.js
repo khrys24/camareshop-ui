@@ -38,8 +38,8 @@ const UpdateUser = () => {
     };
     axios.post(`${process.env.REACT_APP_API_URL}/users/${id}`, data).then((res) => {
       swal("Success!", res.data.message, "success");
+      navigate("/users");
     });
-    navigate("/users");
   };
 
   const onInputChange = (e) => {

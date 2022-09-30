@@ -139,6 +139,7 @@ const Navbar = ({ user, onLogout }) => {
               localStorage.removeItem("User_Details");
               localStorage.removeItem("cartItems");
               localStorage.removeItem("selectedProduct");
+              window.dispatchEvent(new Event("storage"));
             }}
             style={{
               cursor: "pointer",

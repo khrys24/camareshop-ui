@@ -36,8 +36,8 @@ const UpdateProducts = () => {
     };
     axios.post(`${process.env.REACT_APP_API_URL}/products/${id}`, data).then((res) => {
       swal("Success!", res.data.message, "success");
+      navigate("/productlist");
     });
-    navigate("/productlist");
   };
 
   const onInputChange = (e) => {

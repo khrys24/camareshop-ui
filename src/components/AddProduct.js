@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -24,6 +26,7 @@ const AddProduct = () => {
     });
   };
 
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -42,6 +45,7 @@ const AddProduct = () => {
           image: "",
           error_list: {},
         });
+        navigate('/productlist');
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -69,9 +73,8 @@ const AddProduct = () => {
                   </label>
                   <input
                     style={{ width: "200px", height: "37px" }}
-                    className={`form-control ${
-                      product.error_list.name ? "is-invalid" : ""
-                    }`}
+                    className={`form-control ${product.error_list.name ? "is-invalid" : ""
+                      }`}
                     name="name"
                     id="name"
                     type="text"
@@ -92,9 +95,8 @@ const AddProduct = () => {
                     Product Description:
                   </label>
                   <textarea
-                    className={`form-control ${
-                      product.error_list.description ? "is-invalid" : ""
-                    }`}
+                    className={`form-control ${product.error_list.description ? "is-invalid" : ""
+                      }`}
                     name="description"
                     id="description"
                     type="text"
@@ -116,9 +118,8 @@ const AddProduct = () => {
                   </label>
                   <input
                     style={{ width: "200px", height: "37px" }}
-                    className={`form-control ${
-                      product.error_list.price ? "is-invalid" : ""
-                    }`}
+                    className={`form-control ${product.error_list.price ? "is-invalid" : ""
+                      }`}
                     name="price"
                     id="price"
                     type="number"
