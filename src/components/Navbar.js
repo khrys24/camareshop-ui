@@ -112,9 +112,9 @@ const Navbar = ({ user, onLogout }) => {
   );
 
   if (user.id || localStorage.getItem("isLoggedIn")) {
-    let userName = JSON.parse(localStorage.getItem("User_Details")).first_name;
+    let userDetails = JSON.parse(localStorage.getItem("User_Details"));
 
-    btn = (
+    btn = userDetails ? (
       <div className="dropdown logout" style={{ height: "40px" }}>
         <button
           className="btn text-decoration-none dropdown-toggle"
@@ -128,7 +128,7 @@ const Navbar = ({ user, onLogout }) => {
             alignItems: "center",
           }}
         >
-          {userName}
+          {userDetails.first_name}
         </button>
         <ul className="dropdown-menu">
           <li
@@ -152,6 +152,8 @@ const Navbar = ({ user, onLogout }) => {
           </li>
         </ul>
       </div>
+    ) : (
+      ""
     );
   }
 
