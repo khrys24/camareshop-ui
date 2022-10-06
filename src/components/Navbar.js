@@ -41,7 +41,7 @@ const Navbar = ({ user, onLogout }) => {
     let checkAdmin = JSON.parse(localStorage.getItem("User_Details"));
 
     userList =
-      checkAdmin.is_admin == 1 ? (
+      checkAdmin && checkAdmin.is_admin == 1 ? (
         <Link
           to="/users"
           component={RouterLink}
@@ -85,10 +85,10 @@ const Navbar = ({ user, onLogout }) => {
   );
 
   if (user.id || localStorage.getItem("isLoggedIn")) {
-    let checkAdmin = JSON.parse(localStorage.getItem("User_Details")).is_admin;
+    let checkAdmin = JSON.parse(localStorage.getItem("User_Details"));
 
     productList =
-      checkAdmin === 1 ? (
+      checkAdmin && checkAdmin.is_admin === 1 ? (
         <Link
           to="/productlist"
           component={RouterLink}
